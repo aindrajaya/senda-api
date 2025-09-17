@@ -1,0 +1,4370 @@
+{
+	"info": {
+		"_postman_id": "bfb64f56-2418-4bf2-b3b1-4f2a9730852c",
+		"name": "Equals Money API",
+		"description": "<img src=\"https://content.pstmn.io/160131af-3fb4-4891-8c0c-8b3ee838143d/aGVyby1pbGx1c3RyYXRpb24tZTg4Mjg2MGRlM2FhMDUxYzNjNjQ5Mjg2ZGExNzZjMGUuc3Zn\">\n\n## **Welcome to the Equals Money Postman Collection**\n\nThis collection is designed to help you test the full range of Equals Money APIs in both sandbox and production. [Follow our Postman guide to get started&nbsp;↗️](https://docs.equalsmoney.com/pages/use-postman-collection/) You'll find the latest details about all of our endpoints in the [API reference&nbsp;↗️](https://docs.equalsmoney.com/openapi/). If you have any additional questions or suggestions, please contact your implementation manager.\n\nℹ This collection was last updated on July 10th, 2024.",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "7863488"
+	},
+	"item": [
+		{
+			"name": "Accounts & onboarding",
+			"item": [
+				{
+					"name": "Create accounts",
+					"item": [
+						{
+							"name": "Create an account",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"market\": \"UK\",\n    \"features\": [\n      \"payments\"\n    ],\n    \"accountType\": \"business\",\n    \"contact\": {\n      \"firstName\": \"John\",\n      \"lastName\": \"Doe\",\n      \"email\": \"john.doe@example.com\",\n      \"phone\": \"+447123456789\",\n      \"dob\": \"19/01/1946\",\n      \"address\": {\n        \"addressLine1\": \"Great Building\",\n        \"addressLine2\": \"Greater Building\",\n        \"townCity\": \"My Town\",\n        \"postCode\": \"SE13UB\",\n        \"countryCode\": \"GB\"\n      }\n    },\n    \"account\": {\n      \"companyName\": \"ACME international\",\n      \"companyNumber\": \"1111111111\",\n      \"incorporationDate\": \"1980-01-30\",\n      \"type\": \"llp\",\n      \"website\": \"https://www.exampleurl.com\",\n      \"onboardingDetail\": \"Additional details about the account\",\n      \"address\": {\n        \"addressLine1\": \"Great Building\",\n        \"addressLine2\": \"Greater Building\",\n        \"townCity\": \"My Town\",\n        \"postCode\": \"SE13UB\",\n        \"countryCode\": \"GB\"\n      }\n    },\n    \"kyc\": {\n      \"mainPurpose\": [\n        \"Investment\"\n      ],\n      \"sourceOfFunds\": [\n        \"salary\"\n      ],\n      \"destinationOfFunds\": [\n        \"GB\"\n      ],\n      \"currenciesRequired\": [\n        \"GBP\"\n      ],\n      \"annualVolume\": \"Less than £10,000\",\n      \"numberOfPayments\": \"More than 20 payments\"\n    }\n  }",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/v2/onboarding",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"v2",
+										"onboarding"
+									]
+								},
+								"description": "Starts the process of onboarding an account. This endpoint can only be accessed by product-level permissions."
+							},
+							"response": [
+								{
+									"name": "Business with payments feature",
+									"originalRequest": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"market\": \"UK\",\n    \"features\": [\n      \"payments\"\n    ],\n    \"accountType\": \"business\",\n    \"contact\": {\n      \"firstName\": \"John\",\n      \"lastName\": \"Doe\",\n      \"email\": \"john.doe@example.com\",\n      \"phone\": \"+447123456789\",\n      \"dob\": \"19/01/1946\",\n      \"address\": {\n        \"addressLine1\": \"Great Building\",\n        \"addressLine2\": \"Greater Building\",\n        \"townCity\": \"My Town\",\n        \"postCode\": \"SE13UB\",\n        \"countryCode\": \"GB\"\n      }\n    },\n    \"account\": {\n      \"companyName\": \"ACME international\",\n      \"companyNumber\": \"1111111111\",\n      \"incorporationDate\": \"1980-01-30\",\n      \"type\": \"llp\",\n      \"website\": \"https://www.exampleurl.com\",\n      \"onboardingDetail\": \"Additional details about the account\",\n      \"address\": {\n        \"addressLine1\": \"Great Building\",\n        \"addressLine2\": \"Greater Building\",\n        \"townCity\": \"My Town\",\n        \"postCode\": \"SE13UB\",\n        \"countryCode\": \"GB\"\n      }\n    },\n    \"kyc\": {\n      \"mainPurpose\": [\n        \"Investment\"\n      ],\n      \"sourceOfFunds\": [\n        \"salary\"\n      ],\n      \"destinationOfFunds\": [\n        \"GB\"\n      ],\n      \"currenciesRequired\": [\n        \"GBP\"\n      ],\n      \"annualVolume\": \"Less than £10,000\",\n      \"numberOfPayments\": \"More than 20 payments\"\n    }\n  }",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseUrl}}/v2/onboarding",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"v2",
+												"onboarding"
+											]
+										}
+									},
+									"_postman_previewlanguage": null,
+									"header": null,
+									"cookie": [],
+									"body": null
+								},
+								{
+									"name": "Business with cards feature",
+									"originalRequest": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"market\": \"UK\",\n    \"features\": [\n      \"cards\"\n    ],\n    \"accountType\": \"business\",\n    \"contact\": {\n      \"firstName\": \"John\",\n      \"lastName\": \"Doe\",\n      \"email\": \"john.doe@example.com\",\n      \"phone\": \"+447123456789\",\n      \"dob\": \"19/01/1946\",\n      \"address\": {\n        \"addressLine1\": \"Great Building\",\n        \"addressLine2\": \"Greater Building\",\n        \"townCity\": \"My Town\",\n        \"postCode\": \"SE13UB\",\n        \"countryCode\": \"GB\"\n      }\n    },\n    \"account\": {\n      \"companyName\": \"ACME international\",\n      \"companyNumber\": \"1111111111\",\n      \"incorporationDate\": \"1980-01-30\",\n      \"type\": \"llp\",\n      \"website\": \"https://www.exampleurl.com\",\n      \"onboardingDetail\": \"Additional details about the account\",\n      \"address\": {\n        \"addressLine1\": \"Great Building\",\n        \"addressLine2\": \"Greater Building\",\n        \"townCity\": \"My Town\",\n        \"postCode\": \"SE13UB\",\n        \"countryCode\": \"GB\"\n      }\n    },\n    \"kyc\": {\n      \"expectedCardUse\": [\n          \"advertising_and_marketing\",\n          \"bills_and_utilities\",\n          \"client_entertainment\"\n      ],\n      \"sourceOfFunds\": [\n        \"salary\"\n      ],\n      \"currenciesRequired\": [\n        \"GBP\",\n        \"USD\"\n      ],\n      \"averageLoad\": \"20_50k\",\n      \"numberOfCards\": \"11_50\",\n      \"cardFourthLine\": \"CUSTOMER\",\n      \"employeeCards\": true,\n      \"atmWithdrawals\": true\n    }\n  }",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseUrl}}/v2/onboarding",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"v2",
+												"onboarding"
+											]
+										}
+									},
+									"_postman_previewlanguage": null,
+									"header": null,
+									"cookie": [],
+									"body": null
+								},
+								{
+									"name": "Personal with payments feature",
+									"originalRequest": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json",
+												"name": "Content-Type",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"market\": \"UK\",\n    \"features\": [\n      \"payments\"\n    ],\n    \"accountType\": \"personal\",\n    \"contact\": {\n      \"firstName\": \"John\",\n      \"lastName\": \"Doe\",\n      \"email\": \"john.doe@example.com\",\n      \"phone\": \"+447123456789\",\n      \"dob\": \"19/01/1946\",\n      \"address\": {\n        \"addressLine1\": \"Great Building\",\n        \"addressLine2\": \"Greater Building\",\n        \"townCity\": \"My Town\",\n        \"postCode\": \"SE13UB\",\n        \"countryCode\": \"GB\"\n      }\n    },\n    \"kyc\": {\n      \"mainPurpose\": [\n        \"Investment\"\n      ],\n      \"sourceOfFunds\": [\n        \"salary\"\n      ],\n      \"destinationOfFunds\": [\n        \"GB\"\n      ],\n      \"currenciesRequired\": [\n        \"GBP\"\n      ],\n      \"annualVolume\": \"Less than £10,000\",\n      \"numberOfPayments\": \"More than 20 payments\"\n    }\n  }",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseUrl}}/v2/onboarding",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"v2",
+												"onboarding"
+											]
+										}
+									},
+									"_postman_previewlanguage": null,
+									"header": null,
+									"cookie": [],
+									"body": null
+								},
+								{
+									"name": "Personal with cards feature",
+									"originalRequest": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json",
+												"name": "Content-Type",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"market\": \"UK\",\n    \"features\": [\n      \"cards\"\n    ],\n    \"accountType\": \"personal\",\n    \"contact\": {\n      \"firstName\": \"John\",\n      \"lastName\": \"Doe\",\n      \"email\": \"john.doe@example.com\",\n      \"phone\": \"+447123456789\",\n      \"dob\": \"19/01/1946\",\n      \"address\": {\n        \"addressLine1\": \"Great Building\",\n        \"addressLine2\": \"Greater Building\",\n        \"townCity\": \"My Town\",\n        \"postCode\": \"SE13UB\",\n        \"countryCode\": \"GB\"\n      }\n    },\n    \"kyc\": {\n      \"expectedCardUse\": [\n          \"bills_and_utilities\",\n          \"travel_expenses_domestic\",\n          \"other\"\n      ],\n      \"sourceOfFunds\": [\n        \"salary\"\n      ],\n      \"currenciesRequired\": [\n        \"GBP\",\n        \"USD\"\n      ],\n      \"averageLoad\": \"0_20k\",\n      \"numberOfCards\": \"0_10\",\n      \"cardFourthLine\": \"PERSONAL\",\n      \"employeeCards\": false,\n      \"atmWithdrawals\": true\n    }\n  }",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseUrl}}/v2/onboarding",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"v2",
+												"onboarding"
+											]
+										}
+									},
+									"_postman_previewlanguage": null,
+									"header": null,
+									"cookie": [],
+									"body": null
+								}
+							]
+						}
+					]
+				},
+				{
+					"name": "Find accounts",
+					"item": [
+						{
+							"name": "List all accounts",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/v2/accounts",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"v2",
+										"accounts"
+									],
+									"query": [
+										{
+											"key": "limit",
+											"value": "100",
+											"description": "The maximum number of items to return. Default: 100",
+											"disabled": true
+										},
+										{
+											"key": "offset",
+											"value": "200",
+											"description": "The number of items to skip before returning the results. Default: 0",
+											"disabled": true
+										},
+										{
+											"key": "primaryEmailAddress",
+											"value": "test@example.com",
+											"description": "The primary email address of the account",
+											"disabled": true
+										}
+									]
+								},
+								"description": "Returns a list of all your associated accounts.\n\nOrdered chronologically by creation date."
+							},
+							"response": []
+						},
+						{
+							"name": "Retrieve an account's details",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/v2/accounts/:accountId",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"v2",
+										"accounts",
+										":accountId"
+									],
+									"query": [
+										{
+											"key": "personId",
+											"value": "{{personId}}",
+											"description": "The ID of the person to filter by",
+											"disabled": true
+										},
+										{
+											"key": "include",
+											"value": "addresses,currencies,primaryOwner,spot,market",
+											"description": "Optional embeds to include when returning the account. Allowable values: \"addresses\", \"currencies\", \"primaryOwner\", \"spot\", \"market\", \"settings\", \"maxCardsAndBudgets\", \"banks\", \"currencyAlignment\", \"productWithFeatures\"",
+											"disabled": true
+										}
+									],
+									"variable": [
+										{
+											"key": "accountId",
+											"value": "{{accountId}}",
+											"description": "The ID of the account to work with"
+										}
+									]
+								},
+								"description": "Returns data for a given `accountId`. The response will contain either personal or business details, such as account name, primary owner of the account, and enabled features."
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "IP addresses",
+					"item": [
+						{
+							"name": "List IP addresses allowed to access the API",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/v2/ipaddresses",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"v2",
+										"ipaddresses"
+									],
+									"query": [
+										{
+											"key": "limit",
+											"value": "100",
+											"description": "The maximum number of items to return. Default: 100",
+											"disabled": true
+										},
+										{
+											"key": "offset",
+											"value": "200",
+											"description": "The number of items to skip before returning the results. Default: 0",
+											"disabled": true
+										}
+									]
+								},
+								"description": "Returns a list of IP addresses ordered numerically."
+							},
+							"response": []
+						},
+						{
+							"name": "Create an IP address",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\"ip\": \"\", //IP address to whitelist\n\"description\": \"\" //A description of the IP address\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/v2/ipaddresses",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"v2",
+										"ipaddresses"
+									]
+								},
+								"description": "Creates an IP address."
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Addresses",
+					"item": [
+						{
+							"name": "Create an address",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"type\": \"office\",\n    \"nickName\": \"office\",\n    \"addressLine1\": \"Great Building\",\n    \"addressLine2\": \"Four Maple Street\",\n    \"addressLine3\": \"Southwark\",\n    \"addressContact\": \"Brian May\",\n    \"city\": \"London\",\n    \"postcode\": \"SE13UB\",\n    \"country\": \"England\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/v2/addresses?accountId={{accountId}}",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"v2",
+										"addresses"
+									],
+									"query": [
+										{
+											"key": "accountId",
+											"value": "{{accountId}}",
+											"description": "The ID of the account to work with"
+										}
+									]
+								},
+								"description": "Creates an address for a given account."
+							},
+							"response": []
+						},
+						{
+							"name": "List addresses",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/v2/addresses?accountId={{accountId}}",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"v2",
+										"addresses"
+									],
+									"query": [
+										{
+											"key": "accountId",
+											"value": "{{accountId}}",
+											"description": "The ID of the account to work with"
+										},
+										{
+											"key": "limit",
+											"value": "100",
+											"description": "The maximum number of items to return. Default:  100",
+											"disabled": true
+										},
+										{
+											"key": "offset",
+											"value": "200",
+											"description": "The number of items to skip before returning the results. Default: 0",
+											"disabled": true
+										},
+										{
+											"key": "search",
+											"value": null,
+											"description": "The term to search the records for",
+											"disabled": true
+										},
+										{
+											"key": "type",
+											"value": "office",
+											"description": "The type to filter addresses by. Use commas to pass multiple values. Has to be URL encoded",
+											"disabled": true
+										}
+									]
+								},
+								"description": "Returns a list of addresses associated with a given account."
+							},
+							"response": []
+						},
+						{
+							"name": "Retrieve an address",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/v2/addresses/:addressId?accountId={{accountId}}",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"v2",
+										"addresses",
+										":addressId"
+									],
+									"query": [
+										{
+											"key": "accountId",
+											"value": "{{accountId}}",
+											"description": "The ID of the account to work with"
+										}
+									],
+									"variable": [
+										{
+											"key": "addressId",
+											"value": "{{addressId}}",
+											"description": "The ID of the address to work with"
+										}
+									]
+								},
+								"description": "Retrieves an address, based on a given address ID."
+							},
+							"response": []
+						},
+						{
+							"name": "Update an address",
+							"request": {
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"type\": \"office\",\n    \"nickName\": \"office\",\n    \"addressLine1\": \"Great Building\",\n    \"addressLine2\": \"Four Maple Street\",\n    \"addressLine3\": \"Southwark\",\n    \"addressContact\": \"Brian May\",\n    \"city\": \"London\",\n    \"postcode\": \"SE13UB\",\n    \"country\": \"England\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/v2/addresses/:addressId?accountId={{accountId}}",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"v2",
+										"addresses",
+										":addressId"
+									],
+									"query": [
+										{
+											"key": "accountId",
+											"value": "{{accountId}}",
+											"description": "The ID of the account to work with"
+										}
+									],
+									"variable": [
+										{
+											"key": "addressId",
+											"value": "{{addressId}}",
+											"description": "The ID of the address to work with"
+										}
+									]
+								},
+								"description": "Updates an address, based on a given address ID. You can only update an address if it's not a registered address."
+							},
+							"response": []
+						},
+						{
+							"name": "Delete an address",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/v2/addresses/:addressId?accountId={{accountId}}",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"v2",
+										"addresses",
+										":addressId"
+									],
+									"query": [
+										{
+											"key": "accountId",
+											"value": "{{accountId}}",
+											"description": "The ID of the account to work with"
+										}
+									],
+									"variable": [
+										{
+											"key": "addressId",
+											"value": "{{addressId}}",
+											"description": "The ID of the address to work with"
+										}
+									]
+								},
+								"description": "Deletes a given address, based on its ID."
+							},
+							"response": []
+						},
+						{
+							"name": "Look up an address",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/v2/addresses/lookup?postcode=SE13UB",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"v2",
+										"addresses",
+										"lookup"
+									],
+									"query": [
+										{
+											"key": "postcode",
+											"value": "SE13UB",
+											"description": "The postcode to look up addresses for"
+										}
+									]
+								},
+								"description": "Returns a list of all addresses for a given UK postcode (5-7 alphanumeric characters). You can use this to confirm that an address exists. For example, if you want to check a recipient's address for a card delivery.\n\nBy default, this endpoint isn't enabled. If you'd like to use it, please contact us."
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Email domains",
+					"item": [
+						{
+							"name": "List email domains",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/v2/accounts/:accountId/people/email-domains",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"v2",
+										"accounts",
+										":accountId",
+										"people",
+										"email-domains"
+									],
+									"variable": [
+										{
+											"key": "accountId",
+											"value": "{{accountId}}",
+											"description": "The ID of the account to work with"
+										}
+									]
+								},
+								"description": "Returns a list of email domains associated with a given account."
+							},
+							"response": []
+						},
+						{
+							"name": "Update approved email domains",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"domains\": [\n      \"example.com\"\n    ]\n  }",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/v2/accounts/:accountId/email-domains",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"v2",
+										"accounts",
+										":accountId",
+										"email-domains"
+									],
+									"variable": [
+										{
+											"key": "accountId",
+											"value": "{{accountId}}",
+											"description": "The ID of the account to work with"
+										}
+									]
+								},
+								"description": "Updates the list of approved email domains for a given account."
+							},
+							"response": []
+						},
+						{
+							"name": "List approved email domains",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/v2/accounts/:accountId/email-domains",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"v2",
+										"accounts",
+										":accountId",
+										"email-domains"
+									],
+									"query": [
+										{
+											"key": "limit",
+											"value": "100",
+											"description": "The maximum number of items to return. Default: 100",
+											"disabled": true
+										},
+										{
+											"key": "offset",
+											"value": "200",
+											"description": "The number of items to skip before returning the results. Default: 0",
+											"disabled": true
+										}
+									],
+									"variable": [
+										{
+											"key": "accountId",
+											"value": "{{accountId}}",
+											"description": "The ID of the account to work with"
+										}
+									]
+								},
+								"description": "Returns a list of approved email domains for a given account. An approved email domain is a domain that can be supplied as part of someone's email address when you create a person."
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Currencies",
+					"item": [
+						{
+							"name": "Update a currency for an account",
+							"request": {
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"enabled\": false\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/v2/currencies/:currencyCode?accountId={{accountId}}",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"v2",
+										"currencies",
+										":currencyCode"
+									],
+									"query": [
+										{
+											"key": "accountId",
+											"value": "{{accountId}}",
+											"description": "The ID of the account to work with"
+										}
+									],
+									"variable": [
+										{
+											"key": "currencyCode",
+											"value": "EUR",
+											"description": "The currency code of the currency to work with, in ISO 4217 format"
+										}
+									]
+								},
+								"description": "Updates the boolean `enabled` status of a single currency for a given `accountId`."
+							},
+							"response": []
+						}
+					]
+				}
+			],
+			"description": "Onboard and manage currency accounts for your customers."
+		},
+		{
+			"name": "Budgets",
+			"item": [
+				{
+					"name": "Create budgets",
+					"item": [
+						{
+							"name": "Create a budget",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"parentId\": \"{{parentId}}\",\n    \"name\": \"Team Party\",\n    \"features\": [\n        \"payments\"\n    ],\n    \"currencies\": [\n        \"USD\",\n        \"GBP\"\n    ],\n    \"type\": \"shared\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/v2/budgets?accountId={{accountId}}",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"v2",
+										"budgets"
+									],
+									"query": [
+										{
+											"key": "accountId",
+											"value": "{{accountId}}",
+											"description": "The ID of the account to work with"
+										}
+									]
+								},
+								"description": "Creates a budget for a given `accountId`."
+							},
+							"response": [
+								{
+									"name": "Shared budget with payments and cards features",
+									"originalRequest": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"parentId\": \"{{parentId}}\",\n    \"name\": \"Team Party\",\n    \"features\": [\n        \"payments\",\n        \"budgetCards\"\n    ],\n    \"currencies\": [\n        \"USD\",\n        \"GBP\"\n    ],\n    \"type\": \"shared\"\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseUrl}}/budgets?accountId={{accountId}}",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"budgets"
+											],
+											"query": [
+												{
+													"key": "accountId",
+													"value": "{{accountId}}",
+													"description": "The ID of the account to work with"
+												}
+											]
+										}
+									},
+									"_postman_previewlanguage": null,
+									"header": null,
+									"cookie": [],
+									"body": null
+								},
+								{
+									"name": "Individual budget with cards feature",
+									"originalRequest": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"parentId\": \"{{parentId}}\",\n    \"personaId\": \"{{personaId}}\",\n    \"features\": [\n        \"peopleCards\"\n    ],\n    \"currencies\": [\n        \"USD\",\n        \"GBP\"\n    ],\n    \"type\": \"individual\"\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseUrl}}/v2/budgets?accountId={{accountId}}",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"v2",
+												"budgets"
+											],
+											"query": [
+												{
+													"key": "accountId",
+													"value": "{{accountId}}",
+													"description": "The ID of the account to work with"
+												}
+											]
+										}
+									},
+									"_postman_previewlanguage": null,
+									"header": null,
+									"cookie": [],
+									"body": null
+								},
+								{
+									"name": "Individual budget with payments feature",
+									"originalRequest": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"parentId\": \"{{parentId}}\",\n    \"personaId\": \"{{personaId}}\",\n    \"features\": [\n        \"payments\"\n    ],\n    \"currencies\": [\n        \"USD\",\n        \"GBP\"\n    ],\n    \"type\": \"individual\"\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseUrl}}/v2/budgets?accountId={{accountId}}",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"v2",
+												"budgets"
+											],
+											"query": [
+												{
+													"key": "accountId",
+													"value": "{{accountId}}",
+													"description": "The ID of the account to work with"
+												}
+											]
+										}
+									},
+									"_postman_previewlanguage": null,
+									"header": null,
+									"cookie": [],
+									"body": null
+								}
+							]
+						}
+					]
+				},
+				{
+					"name": "View budget details",
+					"item": [
+						{
+							"name": "List all budgets",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/v2/budgets?accountId={{accountId}}",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"v2",
+										"budgets"
+									],
+									"query": [
+										{
+											"key": "accountId",
+											"value": "{{accountId}}",
+											"description": "The ID of the account to work with"
+										},
+										{
+											"key": "limit",
+											"value": "100",
+											"description": "The maximum number of items to return. Default: 100",
+											"disabled": true
+										},
+										{
+											"key": "offset",
+											"value": "200",
+											"description": "The number of items to skip before returning the results. Default: 0",
+											"disabled": true
+										},
+										{
+											"key": "budgetId",
+											"value": "{{budgetId}}",
+											"description": "The ID of the budget to work with. Use commas to pass multiple values. Has to be URL encoded",
+											"disabled": true
+										},
+										{
+											"key": "include",
+											"value": "balance",
+											"description": "Optional embeds to include when returning the budgets. Allowable values: \"balance\", \"budgetHierarchy\", \"settlementDetails\"",
+											"disabled": true
+										},
+										{
+											"key": "search",
+											"value": "Marketing",
+											"description": "The term to filter results by",
+											"disabled": true
+										},
+										{
+											"key": "type",
+											"value": "shared",
+											"description": "The type of a budget to filter results by. Allowable values: \"accountBalance\", \"shared\", \"individual\"",
+											"disabled": true
+										},
+										{
+											"key": "currencyCode",
+											"value": "USD",
+											"description": "The currency code, in ISO-4217 format",
+											"disabled": true
+										}
+									]
+								},
+								"description": "Returns a list of all budgets on an account. Ordered alphabetically. \n\nUse the `include` parameter to return optional information such as available, pending, and ledger balances."
+							},
+							"response": []
+						},
+						{
+							"name": "Retrieve budget details",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/v2/budgets/:budgetId?accountId={{accountId}}",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"v2",
+										"budgets",
+										":budgetId"
+									],
+									"query": [
+										{
+											"key": "accountId",
+											"value": "{{accountId}}",
+											"description": "The ID of the account to work with"
+										},
+										{
+											"key": "include",
+											"value": "balance,children,budgetHierarchy",
+											"description": "Optional embeds to include when returning the budget. Allowable values: \"children\", \"balance\", \"details\", \"detailsActive\", \"budgetHierarchy\", \"settlementDetails\"",
+											"disabled": true
+										},
+										{
+											"key": "currencyCode",
+											"value": "USD",
+											"description": "The currency code, in ISO-4217 format",
+											"disabled": true
+										}
+									],
+									"variable": [
+										{
+											"key": "budgetId",
+											"value": "{{budgetId}}",
+											"description": "The ID of the budget to work with"
+										}
+									]
+								},
+								"description": "Returns the details of a given budget.\n\nUse the `include` parameter to return optional information such as available, pending and ledger balances, and settlement details."
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Manage budgets",
+					"item": [
+						{
+							"name": "Update a budget's details",
+							"request": {
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"feature\": {\n      \"payments\": true,\n      \"budgetCards\": true,\n      \"peopleCards\": true\n    },\n    \"allowCurrencyAlignment\": false\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/v2/budgets/:budgetId?accountId={{accountId}}",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"v2",
+										"budgets",
+										":budgetId"
+									],
+									"query": [
+										{
+											"key": "accountId",
+											"value": "{{accountId}}",
+											"description": "The ID of the account to work with"
+										}
+									],
+									"variable": [
+										{
+											"key": "budgetId",
+											"value": "{{budgetId}}",
+											"description": "The ID of the budget to work with"
+										}
+									]
+								},
+								"description": "Updates the details of a given budget."
+							},
+							"response": []
+						}
+					]
+				}
+			],
+			"description": "Create budgets to receive, hold and manage funds in multiple currencies."
+		},
+		{
+			"name": "Payments",
+			"item": [
+				{
+					"name": "Create payments",
+					"item": [
+						{
+							"name": "Create a budget-to-budget transfer",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"destinationBudgetId\": \"\", //The ID of the budget money is transferred to (needs to belong to the same account as the budget money is transferred from)\n  \"currency\": \"USD\",\n  \"amount\": \"100\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/v2/budgets/:budgetId/transfer?accountId={{accountId}}",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"v2",
+										"budgets",
+										":budgetId",
+										"transfer"
+									],
+									"query": [
+										{
+											"key": "accountId",
+											"value": "{{accountId}}",
+											"description": "The ID of the account to work with"
+										}
+									],
+									"variable": [
+										{
+											"key": "budgetId",
+											"value": "{{budgetId}}",
+											"description": "The ID of the budget to work with"
+										}
+									]
+								},
+								"description": "Transfer money from one budget to another budget."
+							},
+							"response": []
+						},
+						{
+							"name": "Create a currency quote",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"sourceCurrency\": {\n    \"currency\": {\n      \"budgetId\": \"{{parentId}}\",\n      \"currencyCode\": \"USD\"\n    }\n  },\n  \"targetCurrency\": {\n    \"amount\": 100,\n    \"currency\": {\n      \"budgetId\": \"{{parentId}}\",\n      \"currencyCode\": \"GBP\"\n    }\n  },\n  \"settlementDate\": \"20240307\",\n  \"type\": {\n    \"from\": \"balance\",\n    \"to\": \"payment\"\n  }\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/v2/orders/quote?accountId={{accountId}}",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"v2",
+										"orders",
+										"quote"
+									],
+									"query": [
+										{
+											"key": "accountId",
+											"value": "{{accountId}}",
+											"description": "The ID of the account to work with"
+										}
+									]
+								},
+								"description": "Creates a quote for a given currency pair.\n\nYou can create a quote for either an internal currency exchange or an outbound payment. To create a quote for an internal currency exchange, set `type.to` to `balance`. For an outbound payment, use any of `payment`, `multiple`, or `forward`.\n\nOnce you've created a quote, you can create an order.\n\nAll quotes expire after 12 seconds."
+							},
+							"response": []
+						},
+						{
+							"name": "Create an order",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"orderId\": \"\", //The orderId that was returned in the currency quote\n  \"quoteRequestId\": \"\", //The quoteRequestId that was returned in the currency quote\n  \"payments\": {\n    \"amount\": 100,\n    \"currency\": {\n      \"budgetId\": \"{{parentId}}\",\n      \"currencyCode\": \"GBP\"\n    },\n    \"recipientId\": \"{{recipientId}}\" //The ID of the recipient that you're sending the payment to\n  }\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/v2/orders/trade?accountId={{accountId}}",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"v2",
+										"orders",
+										"trade"
+									],
+									"query": [
+										{
+											"key": "accountId",
+											"value": "{{accountId}}",
+											"description": "The ID of the account to work with"
+										}
+									]
+								},
+								"description": "Creates a new order for an internal currency exchange and/or for an outbound payment, using an existing quote."
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Recipients",
+					"item": [
+						{
+							"name": "List all recipients",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/v2/recipients?accountId={{accountId}}",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"v2",
+										"recipients"
+									],
+									"query": [
+										{
+											"key": "accountId",
+											"value": "{{accountId}}",
+											"description": "The ID of the account to work with"
+										},
+										{
+											"key": "limit",
+											"value": "100",
+											"description": "The maximum number of items to return. Default: 100",
+											"disabled": true
+										},
+										{
+											"key": "offset",
+											"value": "200",
+											"description": "The number of items to skip before returning the results. Default: 0",
+											"disabled": true
+										},
+										{
+											"key": "search",
+											"value": "John Doe",
+											"description": "The term to filter results by. Searches on name, country, currency, recipientBankAccount, accountNumber and BIC",
+											"disabled": true
+										},
+										{
+											"key": "deleted",
+											"value": "true",
+											"description": "Whether to return deleted recipients",
+											"disabled": true
+										},
+										{
+											"key": "status",
+											"value": "AUTHORISED",
+											"description": "Filter by status. Allowable values: \"AUTHORISED\", \"PENDING\"",
+											"disabled": true
+										}
+									]
+								},
+								"description": "Returns a list of recipients on an account.\n\nOrdered alphabetically by `name`."
+							},
+							"response": []
+						},
+						{
+							"name": "Create a recipient",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"var payload = pm.response.json();",
+											"pm.environment.set(\"recipientId\", payload.recipientId);"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"accountNumber\": \"81196333\", //Recipient's bank account number\n    \"bankCode\": \"231884\", //Recipient's bank code (sort code)\n    \"name\": \"Jane Sarah Doe\",\n    \"friendlyName\": \"Jane Doe\",\n    \"email\": \"jane.doe@example.com\",\n    \"defaultPurpose\": \"Transfer\",\n    \"currency\": \"GBP\",\n    \"verificationMethod\": \"phone\",\n    \"recipientAddress\": {\n      \"country\": \"GB\",\n      \"address\": \"123 Main Street\",\n      \"city\": \"London\",\n      \"postcode\": \"E1ZW6\"\n    }\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/v2/recipients?accountId={{accountId}}",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"v2",
+										"recipients"
+									],
+									"query": [
+										{
+											"key": "accountId",
+											"value": "{{accountId}}",
+											"description": "The ID of the account to work with"
+										}
+									]
+								},
+								"description": "Creates a new recipient for a given account. A recipient represents an account you want to make a payout to. You'll need to create a recipient before you can create an order."
+							},
+							"response": [
+								{
+									"name": "Create a recipient with bank code",
+									"originalRequest": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"accountNumber\": \"81196333\", //TRecipient's bank account number\n    \"bankCode\": \"231884\", //Recipient's bank code (sort code)\n    \"name\": \"Jane Sarah Doe\",\n    \"friendlyName\": \"Jane Doe\",\n    \"email\": \"jane.doe@example.com\",\n    \"defaultPurpose\": \"Transfer\",\n    \"currency\": \"GBP\",\n    \"verificationMethod\": \"phone\",\n    \"recipientAddress\": {\n      \"country\": \"GB\",\n      \"address\": \"123 Main Street\",\n      \"city\": \"London\",\n      \"postcode\": \"E1ZW6\"\n    }\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseUrl}}/v2/recipients?accountId={{accountId}}",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"v2",
+												"recipients"
+											],
+											"query": [
+												{
+													"key": "accountId",
+													"value": "{{accountId}}",
+													"description": "The ID of the account to work with"
+												}
+											]
+										}
+									},
+									"_postman_previewlanguage": null,
+									"header": null,
+									"cookie": [],
+									"body": null
+								},
+								{
+									"name": "Create a recipient with BIC",
+									"originalRequest": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"accountNumber\": \"81196333\", //Recipient's bank account number\n    \"bic\": \"SPPVGB2L\", //Recipient's Bank Identification Code (BIC)\n    \"name\": \"Jane Sarah Doe\",\n    \"friendlyName\": \"Jane Doe\",\n    \"email\": \"jane.doe@example.com\",\n    \"defaultPurpose\": \"Transfer\",\n    \"currency\": \"EUR\",\n    \"verificationMethod\": \"phone\",\n    \"recipientAddress\": {\n      \"country\": \"GB\",\n      \"address\": \"123 Main Street\",\n      \"city\": \"London\",\n      \"postcode\": \"E1ZW6\"\n    }\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseUrl}}/v2/recipients?accountId={{accountId}}",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"v2",
+												"recipients"
+											],
+											"query": [
+												{
+													"key": "accountId",
+													"value": "{{accountId}}",
+													"description": "The ID of the account to work with"
+												}
+											]
+										}
+									},
+									"_postman_previewlanguage": null,
+									"header": null,
+									"cookie": [],
+									"body": null
+								},
+								{
+									"name": "Create a recipient with IBAN",
+									"originalRequest": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"iban\": \"GB19SPPV23188481196333\", //Recipient's International Bank Account Number (IBAN)\n    \"name\": \"Jane Sarah Doe\",\n    \"friendlyName\": \"Jane Doe\",\n    \"email\": \"jane.doe@example.com\",\n    \"defaultPurpose\": \"Transfer\",\n    \"currency\": \"EUR\",\n    \"verificationMethod\": \"phone\",\n    \"recipientAddress\": {\n      \"country\": \"GB\",\n      \"address\": \"123 Main Street\",\n      \"city\": \"London\",\n      \"postcode\": \"E1ZW6\"\n    }\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseUrl}}/v2/recipients?accountId={{accountId}}",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"v2",
+												"recipients"
+											],
+											"query": [
+												{
+													"key": "accountId",
+													"value": "{{accountId}}",
+													"description": "The ID of the account to work with"
+												}
+											]
+										}
+									},
+									"_postman_previewlanguage": null,
+									"header": null,
+									"cookie": [],
+									"body": null
+								}
+							]
+						},
+						{
+							"name": "Validate a bank account",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"country\": \"GB\",\n  \"iban\": \"PK94XAOM0400102322019126\", //The International Bank Account Number (IBAN)\n  \"number\": \"55555555\", //The bank account number\n  \"code\": \"12-34-56\" //The bank sort code\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/v2/recipients/validate/account?accountId={{accountId}}",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"v2",
+										"recipients",
+										"validate",
+										"account"
+									],
+									"query": [
+										{
+											"key": "accountId",
+											"value": "{{accountId}}",
+											"description": "The ID of the account to work with"
+										}
+									]
+								},
+								"description": "Validates the provided bank account details. You can use this before you create a recipient.\n\nBy default, this endpoint isn't enabled. If you'd like to use it, please contact us."
+							},
+							"response": []
+						},
+						{
+							"name": "Retrieve a recipient",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/v2/recipients/:recipientId?accountId={{accountId}}",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"v2",
+										"recipients",
+										":recipientId"
+									],
+									"query": [
+										{
+											"key": "accountId",
+											"value": "{{accountId}}",
+											"description": "The ID of the account to work with"
+										}
+									],
+									"variable": [
+										{
+											"key": "recipientId",
+											"value": "{{recipientId}}",
+											"description": "The ID of the recipient to work with"
+										}
+									]
+								},
+								"description": "Returns the details of a recipient."
+							},
+							"response": []
+						},
+						{
+							"name": "Delete a recipient",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/v2/recipients/:recipientId?accountId={{accountId}}",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"v2",
+										"recipients",
+										":recipientId"
+									],
+									"query": [
+										{
+											"key": "accountId",
+											"value": "{{accountId}}",
+											"description": "The ID of the account to work with"
+										}
+									],
+									"variable": [
+										{
+											"key": "recipientId",
+											"value": "{{recipientId}}",
+											"description": "The ID of the recipient to work with"
+										}
+									]
+								},
+								"description": "Deletes a recipient."
+							},
+							"response": []
+						}
+					]
+				}
+			],
+			"description": "Get rates, exchange currencies, and send payments globally."
+		},
+		{
+			"name": "Cards",
+			"item": [
+				{
+					"name": "Order cards",
+					"item": [
+						{
+							"name": "Create a new virtual card",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"cardOwnerType\": \"BUDGET\",\n    \"budgetId\": \"{{budgetId}}\",\n    \"name\": \"Team Party\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/v2/cards?accountId={{accountId}}",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"v2",
+										"cards"
+									],
+									"query": [
+										{
+											"key": "accountId",
+											"value": "{{accountId}}",
+											"description": "The ID of the account to work with"
+										}
+									]
+								},
+								"description": "Creates a virtual card for a given account. This card can either be for a person or a budget on an account.\n\nOnce created, you can convert this virtual card to a physical one."
+							},
+							"response": [
+								{
+									"name": "Create a new shared card",
+									"originalRequest": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"cardOwnerType\": \"BUDGET\",\n    \"budgetId\": \"{{budgetId}}\",\n    \"name\": \"Team Party\"\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseUrl}}/v2/cards?accountId={{accountId}}",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"v2",
+												"cards"
+											],
+											"query": [
+												{
+													"key": "accountId",
+													"value": "{{accountId}}",
+													"description": "The ID of the account to work with"
+												}
+											]
+										}
+									},
+									"_postman_previewlanguage": null,
+									"header": null,
+									"cookie": [],
+									"body": null
+								},
+								{
+									"name": "Create a new individual card",
+									"originalRequest": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"personId\": \"{{personId}}\",\n    \"cardOwnerType\": \"PEOPLE\",\n    \"budgets\": [\n        \"budgetId\": \"{{budgetId}}\",\n        \"active\": true\n    ],\n    \"name\": \"John Doe\"\n  }",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseUrl}}/v2/cards?accountId={{accountId}}",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"v2",
+												"cards"
+											],
+											"query": [
+												{
+													"key": "accountId",
+													"value": "{{accountId}}",
+													"description": "The ID of the account to work with"
+												}
+											]
+										}
+									},
+									"_postman_previewlanguage": null,
+									"header": null,
+									"cookie": [],
+									"body": null
+								}
+							]
+						},
+						{
+							"name": "Convert a virtual card into a physical card",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"pin\": \"1111\",\n    \"recipientAddress\": {\n        \"firstName\": \"Jane\",\n        \"middleName\": \"Roger\",\n        \"lastName\": \"Doe\",\n        \"address1\": \"123 Henry St\",\n        \"address2\": \"Suite 101\",\n        \"city\": \"Porterville\",\n        \"state\": \"CA\",\n        \"postalCode\": \"93257\",\n        \"country\": \"US\",\n        \"phone\": \"8315555555\"\n    }\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/v2/cards/:cardId/convert-to-physical?accountId={{accountId}}&personId={{personId}}",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"v2",
+										"cards",
+										":cardId",
+										"convert-to-physical"
+									],
+									"query": [
+										{
+											"key": "accountId",
+											"value": "{{accountId}}",
+											"description": "The ID of the account to work with"
+										},
+										{
+											"key": "personId",
+											"value": "{{personId}}",
+											"description": "The ID of the person to work with"
+										}
+									],
+									"variable": [
+										{
+											"key": "cardId",
+											"value": "{{cardId}}",
+											"description": "The ID of the card to convert"
+										}
+									]
+								},
+								"description": "Converts an active virtual card into a physical card."
+							},
+							"response": [
+								{
+									"name": "With recipient address",
+									"originalRequest": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"pin\": \"1111\",\n    \"recipientAddress\": {\n        \"firstName\": \"Jane\",\n        \"middleName\": \"Roger\",\n        \"lastName\": \"Doe\",\n        \"address1\": \"123 Henry St\",\n        \"address2\": \"Suite 101\",\n        \"city\": \"Porterville\",\n        \"state\": \"CA\",\n        \"postalCode\": \"93257\",\n        \"country\": \"US\",\n        \"phone\": \"8315555555\"\n    }\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseUrl}}/v2/cards/:cardId/convert-to-physical?accountId={{accountId}}&personId={{personId}}",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"v2",
+												"cards",
+												":cardId",
+												"convert-to-physical"
+											],
+											"query": [
+												{
+													"key": "accountId",
+													"value": "{{accountId}}",
+													"description": "The ID of the account to work with"
+												},
+												{
+													"key": "personId",
+													"value": "{{personId}}",
+													"description": "The ID of the person to work with"
+												}
+											],
+											"variable": [
+												{
+													"key": "cardId",
+													"value": "{{cardId}}",
+													"description": "The ID of the card to convert"
+												}
+											]
+										}
+									},
+									"_postman_previewlanguage": null,
+									"header": null,
+									"cookie": [],
+									"body": null
+								},
+								{
+									"name": "With addressId",
+									"originalRequest": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"pin\": \"1111\",\n    \"addressId\": \"{{addressId}}\" //The ID of the address to work with\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseUrl}}/v2/cards/:cardId/convert-to-physical?accountId={{accountId}}&personId={{personId}}",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"v2",
+												"cards",
+												":cardId",
+												"convert-to-physical"
+											],
+											"query": [
+												{
+													"key": "accountId",
+													"value": "{{accountId}}",
+													"description": "The ID of the account to work with"
+												},
+												{
+													"key": "personId",
+													"value": "{{personId}}",
+													"description": "The ID of the person to work with"
+												}
+											],
+											"variable": [
+												{
+													"key": "cardId",
+													"value": "{{cardId}}",
+													"description": "The ID of the card to convert"
+												}
+											]
+										}
+									},
+									"_postman_previewlanguage": null,
+									"header": null,
+									"cookie": [],
+									"body": null
+								}
+							]
+						},
+						{
+							"name": "Order a replacement card",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"keepPan\": true,\n    \"keepDigitalWalletTokens\": true\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/v2/cards/:cardId/replace?accountId={{accountId}}",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"v2",
+										"cards",
+										":cardId",
+										"replace"
+									],
+									"query": [
+										{
+											"key": "accountId",
+											"value": "{{accountId}}",
+											"description": "The ID of the account to work with"
+										},
+										{
+											"key": "personId",
+											"value": "{{personId}}",
+											"description": "The ID of the person to work with",
+											"disabled": true
+										}
+									],
+									"variable": [
+										{
+											"key": "cardId",
+											"value": "{{cardId}}",
+											"description": "The ID of the card to replace"
+										}
+									]
+								},
+								"description": "Replaces an existing card with a new one. A physical card will be replaced with a physical card and a virtual card will be replaced with a virtual card."
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Manage cards",
+					"item": [
+						{
+							"name": "Update a card's details",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"name\": \"Team Party\"\n  }",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/v2/cards/:cardId?accountId={{accountId}}",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"v2",
+										"cards",
+										":cardId"
+									],
+									"query": [
+										{
+											"key": "accountId",
+											"value": "{{accountId}}",
+											"description": "The ID of the account to work with"
+										},
+										{
+											"key": "personId",
+											"value": "{{personId}}",
+											"description": "The ID of the person to work with",
+											"disabled": true
+										}
+									],
+									"variable": [
+										{
+											"key": "cardId",
+											"value": "{{cardId}}",
+											"description": "The ID of the card to work with"
+										}
+									]
+								},
+								"description": "Updates the details of a given card."
+							},
+							"response": []
+						},
+						{
+							"name": "Update a card's state",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"state\": \"SUSPENDED\",\n    \"reason\": \"Lost card\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/v2/cards/:cardId/transition?accountId={{accountId}}",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"v2",
+										"cards",
+										":cardId",
+										"transition"
+									],
+									"query": [
+										{
+											"key": "accountId",
+											"value": "{{accountId}}",
+											"description": "The ID of the account to work with"
+										},
+										{
+											"key": "personId",
+											"value": "{{personId}}",
+											"description": "The ID of the person to work with",
+											"disabled": true
+										}
+									],
+									"variable": [
+										{
+											"key": "cardId",
+											"value": "{{cardId}}",
+											"description": "The ID of the card to work with"
+										}
+									]
+								},
+								"description": "Updates the state of an existing card.\n\nThe possible states are: \n\n- `“ACTIVE”`\n    \n- `“REPLACED”`\n    \n- `“TERMINATED”`\n    \n- `“SUSPENDED”`\n    \n- `“UNACTIVATED”`\n    \n\nYou can update a state when you update a card's details."
+							},
+							"response": []
+						},
+						{
+							"name": "Remove a card from a budget",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/v2/cards/:cardId/budgets/:budgetId?accountId={{accountId}}",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"v2",
+										"cards",
+										":cardId",
+										"budgets",
+										":budgetId"
+									],
+									"query": [
+										{
+											"key": "accountId",
+											"value": "{{accountId}}",
+											"description": "The ID of the account to work with"
+										}
+									],
+									"variable": [
+										{
+											"key": "cardId",
+											"value": "{{cardId}}",
+											"description": "The ID of the card to work with"
+										},
+										{
+											"key": "budgetId",
+											"value": "{{budgetId}}",
+											"description": "The ID of the budget to work with"
+										}
+									]
+								},
+								"description": "Removes a card from a given budget."
+							},
+							"response": []
+						},
+						{
+							"name": "Remove a card from all budgets",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/v2/cards/:cardId/budgets?accountId={{accountId}}",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"v2",
+										"cards",
+										":cardId",
+										"budgets"
+									],
+									"query": [
+										{
+											"key": "accountId",
+											"value": "{{accountId}}",
+											"description": "The ID of the card to work with"
+										}
+									],
+									"variable": [
+										{
+											"key": "cardId",
+											"value": "{{cardId}}",
+											"description": "The ID of the card to work with"
+										}
+									]
+								},
+								"description": "Removes a card from all of the budgets that it's associated with."
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Get card details",
+					"item": [
+						{
+							"name": "List cards",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/v2/cards?accountId={{accountId}}",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"v2",
+										"cards"
+									],
+									"query": [
+										{
+											"key": "accountId",
+											"value": "{{accountId}}",
+											"description": "The ID of the account to work with"
+										},
+										{
+											"key": "personId",
+											"value": "{{personId}}",
+											"description": "The ID of the person to work with",
+											"disabled": true
+										},
+										{
+											"key": "limit",
+											"value": "100",
+											"description": "The maximum number of items to return. Default: 100",
+											"disabled": true
+										},
+										{
+											"key": "offset",
+											"value": "0",
+											"description": "The number of items to skip before returning the results. Default: 0",
+											"disabled": true
+										},
+										{
+											"key": "state",
+											"value": "ACTIVE,SUSPENDED",
+											"description": "The state of the card. Allowable values: \"ACTIVE\", \"REPLACED\", \"TERMINATED\", \"SUSPENDED\", \"UNACTIVATED\"",
+											"disabled": true
+										},
+										{
+											"key": "orderBy",
+											"value": "asc",
+											"description": "The order in which to return results. By default, cards are sorted by name in ascending order. Allowable values: \"asc\", \"desc\"",
+											"disabled": true
+										},
+										{
+											"key": "startDate",
+											"value": "2021-02-15",
+											"description": "The earliest date from which to retrieve records (includes records on this date)",
+											"disabled": true
+										},
+										{
+											"key": "endDate",
+											"value": "2021-03-30",
+											"description": "The latest date until which to retrieve records (includes records on this date)",
+											"disabled": true
+										},
+										{
+											"key": "search",
+											"value": "Cesar+Treutel",
+											"description": "The term to search the records for",
+											"disabled": true
+										},
+										{
+											"key": "budgetId",
+											"value": "{{budgetId}}",
+											"description": "The ID of the budget to work with",
+											"disabled": true
+										},
+										{
+											"key": "cardId",
+											"value": "{{cardId}}",
+											"description": "The ID of the card to filter results by",
+											"disabled": true
+										},
+										{
+											"key": "cardIds",
+											"value": null,
+											"description": "The IDs of the Card to work with. Use commas to pass multiple values. Has to be URL encoded",
+											"disabled": true
+										},
+										{
+											"key": "personIds",
+											"value": null,
+											"description": "The IDs of the people to work with. Use commas to pass multiple values. Has to be URL encoded",
+											"disabled": true
+										}
+									]
+								},
+								"description": "Returns a list of cards on an account, ordered in alphabetical order by card name."
+							},
+							"response": []
+						},
+						{
+							"name": "Retrieve a card",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/v2/cards/:cardId?accountId={{accountId}}",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"v2",
+										"cards",
+										":cardId"
+									],
+									"query": [
+										{
+											"key": "accountId",
+											"value": "{{accountId}}",
+											"description": "The ID of the account to work with"
+										},
+										{
+											"key": "personId",
+											"value": "{{personId}}",
+											"description": "The ID of the person to work with",
+											"disabled": true
+										},
+										{
+											"key": "include",
+											"value": "cardProduct",
+											"description": "Optional embeds to include when returning the card. Allowable values: \"limits\", \"cardProduct\"",
+											"disabled": true
+										}
+									],
+									"variable": [
+										{
+											"key": "cardId",
+											"value": "{{cardId}}",
+											"description": "The ID of the card to work with"
+										}
+									]
+								},
+								"description": "Returns the details of a given card. Use the `include` parameter to get additional information such as limits."
+							},
+							"response": []
+						},
+						{
+							"name": "Retrieve a card's sensitive data",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/v2/cards/:cardId/access-token?accountId={{accountId}}",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"v2",
+										"cards",
+										":cardId",
+										"access-token"
+									],
+									"query": [
+										{
+											"key": "accountId",
+											"value": "{{accountId}}",
+											"description": "The ID of the account to work with"
+										},
+										{
+											"key": "personId",
+											"value": "{{personId}}",
+											"description": "The ID of the person to work with",
+											"disabled": true
+										}
+									],
+									"variable": [
+										{
+											"key": "cardId",
+											"value": "{{cardId}}",
+											"description": "The ID of the card to work with"
+										}
+									]
+								},
+								"description": "Returns an access token that is required to get card details (PAN and CVV) from Marqeta's [sensitive data widget service](https://www.marqeta.com/docs/developer-guides/using-marqeta-js#_card_data_tutorial).\n\nAccess tokens expire after 5 minutes."
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "PIN",
+					"item": [
+						{
+							"name": "Retrieve a PIN",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/v2/cards/:cardId/pin?accountId={{accountId}}&personId={{personId}}&cardholderVerificationMethod=BIOMETRIC_FACE",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"v2",
+										"cards",
+										":cardId",
+										"pin"
+									],
+									"query": [
+										{
+											"key": "accountId",
+											"value": "{{accountId}}",
+											"description": "The ID of the account to work with"
+										},
+										{
+											"key": "personId",
+											"value": "{{personId}}",
+											"description": "The ID of the person to work with"
+										},
+										{
+											"key": "cardholderVerificationMethod",
+											"value": "BIOMETRIC_FACE",
+											"description": "The supplemental method used to verify the cardholder’s identity before revealing the card’s PIN. Allowable values: \"BIOMETRIC_FACE\", \"BIOMETRIC_FINGERPRINT\", \"LOGIN\""
+										}
+									],
+									"variable": [
+										{
+											"key": "cardId",
+											"value": "{{cardId}}",
+											"description": "The ID of the card to work with"
+										}
+									]
+								},
+								"description": "Returns the PIN for a given card."
+							},
+							"response": []
+						},
+						{
+							"name": "Update a card's PIN",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"pin\": \"1111\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/v2/cards/:cardId/pin?accountId={{accountId}}&personId={{personId}}",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"v2",
+										"cards",
+										":cardId",
+										"pin"
+									],
+									"query": [
+										{
+											"key": "accountId",
+											"value": "{{accountId}}",
+											"description": "The ID of the account to work with"
+										},
+										{
+											"key": "personId",
+											"value": "{{personId}}",
+											"description": "The ID of the person to work with"
+										}
+									],
+									"variable": [
+										{
+											"key": "cardId",
+											"value": "{{cardId}}",
+											"description": "The ID of the card to work with"
+										}
+									]
+								},
+								"description": "Updates the PIN of a card on a given account where an `accountId` and `cardId` are provided."
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Spending limits",
+					"item": [
+						{
+							"name": "Retrieve spending limit for a card",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/v2/cards/:cardId/spending-limits?accountId={{accountId}}&budgetId={{budgetId}}",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"v2",
+										"cards",
+										":cardId",
+										"spending-limits"
+									],
+									"query": [
+										{
+											"key": "accountId",
+											"value": "{{accountId}}",
+											"description": "The ID of the account to work with"
+										},
+										{
+											"key": "budgetId",
+											"value": "{{budgetId}}",
+											"description": "The ID of the budget to work with"
+										},
+										{
+											"key": "personId",
+											"value": "{{personId}}",
+											"description": "The ID of the person to work with",
+											"disabled": true
+										}
+									],
+									"variable": [
+										{
+											"key": "cardId",
+											"value": "{{cardId}}",
+											"description": "The ID of the card to work with"
+										}
+									]
+								},
+								"description": "Returns the spending limit for a given card."
+							},
+							"response": []
+						},
+						{
+							"name": "Create spending limit for a card",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"amount\": 100.5,\n    \"limitWindow\": \"DAY\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/v2/cards/:cardId/spending-limits?accountId={{accountId}}&budgetId={{budgetId}}",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"v2",
+										"cards",
+										":cardId",
+										"spending-limits"
+									],
+									"query": [
+										{
+											"key": "accountId",
+											"value": "{{accountId}}",
+											"description": "The ID of the account to work with"
+										},
+										{
+											"key": "budgetId",
+											"value": "{{budgetId}}",
+											"description": "The ID of the budget to work with"
+										},
+										{
+											"key": "personId",
+											"value": "{{personId}}",
+											"description": "The ID of the person to work with",
+											"disabled": true
+										}
+									],
+									"variable": [
+										{
+											"key": "cardId",
+											"value": "{{cardId}}",
+											"description": "The ID of the card to work with"
+										}
+									]
+								},
+								"description": "Creates a spending limit for a given card. A spending limit defines the maximum amount that can be spent during a chosen time period. For example, £10 a day."
+							},
+							"response": []
+						},
+						{
+							"name": "Update spending limit for a card",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"amount\": 100\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/v2/cards/:cardId/spending-limits/:spendingLimitId?accountId={{accountId}}&budgetId={{budgetId}}",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"v2",
+										"cards",
+										":cardId",
+										"spending-limits",
+										":spendingLimitId"
+									],
+									"query": [
+										{
+											"key": "accountId",
+											"value": "{{accountId}}",
+											"description": "The ID of the account to work with"
+										},
+										{
+											"key": "budgetId",
+											"value": "{{budgetId}}",
+											"description": "The ID of the budget to work with"
+										},
+										{
+											"key": "personId",
+											"value": "{{personId}}",
+											"description": "The ID of the person to work with",
+											"disabled": true
+										}
+									],
+									"variable": [
+										{
+											"key": "cardId",
+											"value": "{{cardId}}",
+											"description": "The ID of the card to work with"
+										},
+										{
+											"key": "spendingLimitId",
+											"value": "{{spendingLimitId}}",
+											"description": "The ID of the limit to work with"
+										}
+									]
+								},
+								"description": "Updates the spending limit for a given card."
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Transaction limits",
+					"item": [
+						{
+							"name": "Retrieve transaction limit for a card",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/v2/cards/:cardId/transaction-limits?accountId={{accountId}}&budgetId={{budgetId}}",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"v2",
+										"cards",
+										":cardId",
+										"transaction-limits"
+									],
+									"query": [
+										{
+											"key": "accountId",
+											"value": "{{accountId}}",
+											"description": "The ID of the account to work with"
+										},
+										{
+											"key": "budgetId",
+											"value": "{{budgetId}}",
+											"description": "The ID of the budget to work with"
+										},
+										{
+											"key": "personId",
+											"value": "{{personId}}",
+											"description": "The ID of the person to work with",
+											"disabled": true
+										}
+									],
+									"variable": [
+										{
+											"key": "cardId",
+											"value": "{{cardId}}",
+											"description": "The ID of the card to work with"
+										}
+									]
+								},
+								"description": "Returns the transaction limit for a given card."
+							},
+							"response": []
+						},
+						{
+							"name": "Create transaction limit for a card",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"amount\": 100.5,\n    \"limitWindow\": \"TRANSACTION\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/v2/cards/:cardId/transaction-limits?accountId={{accountId}}&budgetId={{budgetId}}",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"v2",
+										"cards",
+										":cardId",
+										"transaction-limits"
+									],
+									"query": [
+										{
+											"key": "accountId",
+											"value": "{{accountId}}",
+											"description": "The ID of the account to work with"
+										},
+										{
+											"key": "budgetId",
+											"value": "{{budgetId}}",
+											"description": "The ID of the budget to work with"
+										},
+										{
+											"key": "personId",
+											"value": "{{personId}}",
+											"description": "The ID of the person to work with",
+											"disabled": true
+										}
+									],
+									"variable": [
+										{
+											"key": "cardId",
+											"value": "{{cardId}}",
+											"description": "The ID of the card to work with"
+										}
+									]
+								},
+								"description": "Creates a transaction limit for a given card. A transaction limit defines the maximum amount that can be spent in a single transaction."
+							},
+							"response": []
+						},
+						{
+							"name": "Update transaction limit for a card",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"amount\": 100\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/v2/cards/:cardId/transaction-limits/:transactionLimitId?accountId={{accountId}}&budgetId={{budgetId}}",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"v2",
+										"cards",
+										":cardId",
+										"transaction-limits",
+										":transactionLimitId"
+									],
+									"query": [
+										{
+											"key": "accountId",
+											"value": "{{accountId}}",
+											"description": "The ID of the account to work with"
+										},
+										{
+											"key": "budgetId",
+											"value": "{{budgetId}}",
+											"description": "The ID of the budget to work with"
+										},
+										{
+											"key": "personId",
+											"value": "{{personId}}",
+											"description": "The ID of the person to work with",
+											"disabled": true
+										}
+									],
+									"variable": [
+										{
+											"key": "cardId",
+											"value": "{{cardId}}",
+											"description": "The ID of the card to work with"
+										},
+										{
+											"key": "transactionLimitId",
+											"value": "{{transactionLimitId}}",
+											"description": "The ID of the limit to work with"
+										}
+									]
+								},
+								"description": "Updates the transaction limit for a given card."
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Merchant controls",
+					"item": [
+						{
+							"name": "List authorisation controls",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/v2/cards/:cardId/auth-controls?accountId={{accountId}}",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"v2",
+										"cards",
+										":cardId",
+										"auth-controls"
+									],
+									"query": [
+										{
+											"key": "accountId",
+											"value": "{{accountId}}",
+											"description": "The ID of the account to work with"
+										},
+										{
+											"key": "personId",
+											"value": "{{personId}}",
+											"description": "The ID of the person to work with",
+											"disabled": true
+										},
+										{
+											"key": "limit",
+											"value": "5",
+											"description": "The maximum number of items to return. Default: 5",
+											"disabled": true
+										},
+										{
+											"key": "offset",
+											"value": "0",
+											"description": "The number of items to skip before returning the results. Default: 0",
+											"disabled": true
+										}
+									],
+									"variable": [
+										{
+											"key": "cardId",
+											"value": "{{cardId}}",
+											"description": "The ID of the card to work with"
+										}
+									]
+								},
+								"description": "Returns a list of authorisation controls for a given card."
+							},
+							"response": []
+						},
+						{
+							"name": "Create an authorisation control",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"name\": \"Spending controls\",\n    \"merchantScope\": {\n        \"mcc\": \"3596\",\n        \"mccGroup\": \"Airlines\"\n    }\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/v2/cards/:cardId/auth-controls?accountId={{accountId}}",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"v2",
+										"cards",
+										":cardId",
+										"auth-controls"
+									],
+									"query": [
+										{
+											"key": "accountId",
+											"value": "{{accountId}}",
+											"description": "The ID of the account to work with"
+										},
+										{
+											"key": "personId",
+											"value": "{{personId}}",
+											"description": "The ID of the person to work with",
+											"disabled": true
+										}
+									],
+									"variable": [
+										{
+											"key": "cardId",
+											"value": "{{cardId}}",
+											"description": "The ID of the card to work with"
+										}
+									]
+								},
+								"description": "Creates an authorisation control for a given card. This prevents the card from being used with certain merchants, specified by their Merchant Category Code (MCC) or Merchant Identifier (MID).\n\nUse `mcc` to block an entire merchant category or `mid` to block a specific merchant.\n\nYou can update a card's authorisation control at any point."
+							},
+							"response": []
+						},
+						{
+							"name": "Retrieve an authorisation control",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/v2/cards/:cardId/auth-controls/:authControlId?accountId={{accountId}}",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"v2",
+										"cards",
+										":cardId",
+										"auth-controls",
+										":authControlId"
+									],
+									"query": [
+										{
+											"key": "accountId",
+											"value": "{{accountId}}",
+											"description": "The ID of the account to work with"
+										},
+										{
+											"key": "personId",
+											"value": "{{personId}}",
+											"description": "The ID of the person",
+											"disabled": true
+										}
+									],
+									"variable": [
+										{
+											"key": "cardId",
+											"value": "{{cardId}}",
+											"description": "The ID of the card to work with"
+										},
+										{
+											"key": "authControlId",
+											"value": "{{authControlId}}",
+											"description": "The ID of the authorisation control to work with"
+										}
+									]
+								},
+								"description": "Returns the details of a given authorisation control."
+							},
+							"response": []
+						},
+						{
+							"name": "Update an authorisation control",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"active\": false\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/v2/cards/:cardId/auth-controls/:authControlId?accountId={{accountId}}",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"v2",
+										"cards",
+										":cardId",
+										"auth-controls",
+										":authControlId"
+									],
+									"query": [
+										{
+											"key": "accountId",
+											"value": "{{accountId}}",
+											"description": "The ID of the account to work with"
+										},
+										{
+											"key": "personId",
+											"value": "{{personId}}",
+											"description": "The ID of the person",
+											"disabled": true
+										}
+									],
+									"variable": [
+										{
+											"key": "cardId",
+											"value": "{{cardId}}",
+											"description": "The ID of the card to work with"
+										},
+										{
+											"key": "authControlId",
+											"value": "{{authControlId}}",
+											"description": "The ID of the authorisation control to work with"
+										}
+									]
+								},
+								"description": "Updates the details of a given authorisation control."
+							},
+							"response": []
+						},
+						{
+							"name": "List MCC groups",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/v2/mcc-groups?accountId={{accountId}}",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"v2",
+										"mcc-groups"
+									],
+									"query": [
+										{
+											"key": "accountId",
+											"value": "{{accountId}}",
+											"description": "The ID of the account to work with"
+										},
+										{
+											"key": "personId",
+											"value": "{{personId}}",
+											"description": "The ID of the person to work with",
+											"disabled": true
+										},
+										{
+											"key": "limit",
+											"value": "100",
+											"description": "The maximum number of items to return. Default: 100",
+											"disabled": true
+										},
+										{
+											"key": "offset",
+											"value": "0",
+											"description": "The number of items to skip before returning the results. Default: 0",
+											"disabled": true
+										}
+									]
+								},
+								"description": "Returns a list of pre-defined merchant category code (MCC) groups, which can used to create spending limits"
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Digital wallet tokens",
+					"item": [
+						{
+							"name": "Create an Apple digital wallet token",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"deviceType\": \"WATCH\",\n    \"provisioningAppVersion\": \"2.11.1\",\n    \"certificates\": [\n        \"MIIEPDCCA+KgAwIBAgICEAAwCQYHKoZIzj\",\n        \"MIIDZjCCAw2gAwIBAgIJAJx22AGaEPSgMA\"\n    ],\n    \"nonce\": \"vXWJaBidcTLaJJCF\",\n    \"nonceSignature\": \"jD4Aphu+93N2wbBn\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/v2/cards/:cardId/apple-wallet?accountId={{accountId}}",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"v2",
+										"cards",
+										":cardId",
+										"apple-wallet"
+									],
+									"query": [
+										{
+											"key": "accountId",
+											"value": "{{accountId}}",
+											"description": "The ID of the account to work with"
+										},
+										{
+											"key": "personId",
+											"value": "{{personId}}",
+											"description": "The ID of the person that the card belongs to",
+											"disabled": true
+										}
+									],
+									"variable": [
+										{
+											"key": "cardId",
+											"value": "{{cardId}}",
+											"description": "The ID of the card to work with"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Create a Samsung digital wallet token",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"deviceType\": \"WATCH\",\n    \"provisioningAppVersion\": \"2.11.1\",\n    \"deviceId\": \"b39f54264a3d\",\n    \"walletUserId\": \"894b8236-b5cc-4f49-89f7-690d7bc4b9d2\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/v2/cards/:cardId/samsung-wallet?accountId={{accountId}}",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"v2",
+										"cards",
+										":cardId",
+										"samsung-wallet"
+									],
+									"query": [
+										{
+											"key": "accountId",
+											"value": "{{accountId}}",
+											"description": "The ID of the account to work with"
+										},
+										{
+											"key": "personId",
+											"value": "{{personId}}",
+											"description": "The ID of the person that the card belongs to",
+											"disabled": true
+										}
+									],
+									"variable": [
+										{
+											"key": "cardId",
+											"value": "{{cardId}}",
+											"description": "The ID of the card to work with"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Create a Google digital wallet token",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"deviceType\": \"WATCH\",\n    \"provisioningAppVersion\": \"2.11.1\",\n    \"deviceId\": \"b39f54264a3d\",\n    \"walletUserId\": \"894b8236-b5cc-4f49-89f7-690d7bc4b9d2\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/v2/cards/:cardId/google-wallet?accountId={{accountId}}",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"v2",
+										"cards",
+										":cardId",
+										"google-wallet"
+									],
+									"query": [
+										{
+											"key": "accountId",
+											"value": "{{accountId}}",
+											"description": "The ID of the account to work with"
+										},
+										{
+											"key": "personId",
+											"value": "{{personId}}",
+											"description": "The ID of the person that the card belongs to",
+											"disabled": true
+										}
+									],
+									"variable": [
+										{
+											"key": "cardId",
+											"value": "{{cardId}}",
+											"description": "The ID of the card to work with"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update a digital wallet token's state",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"state\": \"ACTIVE\",\n    \"digitalWalletToken\": \"9d3dee7c-19df-4b71-bbb9-521bb04307bf\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/v2/cards/:cardId/digital-wallet-token-transitions?accountId={{accountId}}",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"v2",
+										"cards",
+										":cardId",
+										"digital-wallet-token-transitions"
+									],
+									"query": [
+										{
+											"key": "accountId",
+											"value": "{{accountId}}",
+											"description": "The ID of the account to work with"
+										},
+										{
+											"key": "personId",
+											"value": "{{personId}}",
+											"description": "The ID of the person that the card belongs to",
+											"disabled": true
+										}
+									],
+									"variable": [
+										{
+											"key": "cardId",
+											"value": "{{cardId}}",
+											"description": "The ID of the card to work with"
+										}
+									]
+								},
+								"description": "Updates the state of a digital wallet token.\n\nThe possible states are:\n\n- `\"REQUESTED\"`\n    \n- `\"REQUEST_DECLINED\"`\n    \n- `\"ACTIVE\"`\n    \n- `\"TERMINATED\"`\n    \n- `\"SUSPENDED\"`"
+							},
+							"response": []
+						},
+						{
+							"name": "List digital wallet tokens",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/v2/cards/tokens?accountId={{accountId}}",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"v2",
+										"cards",
+										"tokens"
+									],
+									"query": [
+										{
+											"key": "accountId",
+											"value": "{{accountId}}",
+											"description": "The ID of the account to work with"
+										},
+										{
+											"key": "personId",
+											"value": "{{personId}}",
+											"description": "The ID of the person to work with",
+											"disabled": true
+										},
+										{
+											"key": "state",
+											"value": "ACTIVE",
+											"description": "The state of the token. Allowable values: \"REQUESTED\", \"REQUEST_DECLINED\", \"ACTIVE\", \"SUSPENDED\", \"TERMINATED\"",
+											"disabled": true
+										},
+										{
+											"key": "search",
+											"value": "1234,3453,2222",
+											"description": "List of comma-separated last four digits.",
+											"disabled": true
+										},
+										{
+											"key": "type",
+											"value": "APPLE_PAY",
+											"description": "The type of wallet token. Allowable values: \"APPLE_PAY\", \"ANDROID_PAY\", \"SAMSUNG_PAY\"",
+											"disabled": true
+										},
+										{
+											"key": "deviceType",
+											"value": "WATCH",
+											"description": "The type of device. Allowable values: \"MOBILE_PHONE\", \"TABLET\", \"WATCH\"",
+											"disabled": true
+										}
+									]
+								},
+								"description": "Returns a list of digital wallet tokens for cards on a given account.\n\nEach digital wallet token represents a specific card, wallet and device combination.\n\nWe support Apple Pay, Google Pay, and Samsung Pay wallets."
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "3D Secure",
+					"item": [
+						{
+							"name": "Update 3DS authentication request",
+							"request": {
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"authenticationMethod\": \"BIOMETRIC_FACE\",\n    \"authenticationResult\": \"SUCCESS\",\n    \"acsTransactionId\": \"c92aafca-5e9e-43fa-b7cc-cd20ece475f5\",\n    \"messageVersion\": \"2.1.0\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/v2/cards/3ds?accountId={{accountId}}",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"v2",
+										"cards",
+										"3ds"
+									],
+									"query": [
+										{
+											"key": "accountId",
+											"value": "{{accountId}}",
+											"description": "The ID of the account to work with"
+										},
+										{
+											"key": "personId",
+											"value": "{{personId}}",
+											"description": "The ID of the person to work with",
+											"disabled": true
+										}
+									]
+								},
+								"description": "Updates a 3D Secure (3DS) authentication request and sends the result to the access control server (ACS).\n\n3DS is a security protocol designed to authenticate a cardholder during an online card transaction. If the cardholder fails to authenticate, then the transaction is voided."
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Card tests",
+					"item": [
+						{
+							"name": "Simulate a card authorisation",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"cardId\": \"{{cardId}}\",\n    \"amount\": 10,\n    \"network\": \"VISA\",\n    \"cardAcceptor\": {\n      \"mid\": \"11111\"\n    }\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/v2/cards/simulations/transaction/authorization?accountId={{accountId}}",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"v2",
+										"cards",
+										"simulations",
+										"transaction",
+										"authorization"
+									],
+									"query": [
+										{
+											"key": "accountId",
+											"value": "{{accountId}}",
+											"description": "The ID of the account to work with"
+										}
+									]
+								},
+								"description": "Simulates a card authorisation.\n\nThis endpoint is for testing purposes only and won't work in production."
+							},
+							"response": []
+						},
+						{
+							"name": "Simulate a card authorisation advice",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"precedingRelatedTransactionToken\": \"\", //The token of the transaction to work with. This is the token received in the response to the authorisation request.\n    \"amount\": 10\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/v2/cards/simulations/transaction/authorization/advice",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"v2",
+										"cards",
+										"simulations",
+										"transaction",
+										"authorization",
+										"advice"
+									]
+								},
+								"description": "Simulates a card authorisation advice.\n\nThis endpoint is for testing purposes only and won't work in production."
+							},
+							"response": []
+						},
+						{
+							"name": "Simulate a card authorisation clearing",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"precedingRelatedTransactionToken\": \"\", //The token of the transaction to work with. This is the token received in the response to the authorisation request.\n    \"amount\": 10\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/v2/cards/simulations/transaction/authorization/clearing",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"v2",
+										"cards",
+										"simulations",
+										"transaction",
+										"authorization",
+										"clearing"
+									]
+								},
+								"description": "Simulates a card authorisation clearing.\n\nThis endpoint is for testing purposes only and won't work in production."
+							},
+							"response": []
+						},
+						{
+							"name": "Simulate a card authorisation reversal",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"precedingRelatedTransactionToken\": \"\", //The token of the transaction to work with. This is the token received in the response to the authorisation request.\n    \"amount\": 10\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/v2/cards/simulations/transaction/authorization/reversal",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"v2",
+										"cards",
+										"simulations",
+										"transaction",
+										"authorization",
+										"reversal"
+									]
+								},
+								"description": "Simulates a card authorisation reversal.\n\nThis endpoint is for testing purposes only and won't work in production."
+							},
+							"response": []
+						},
+						{
+							"name": "Simulate a card refund authorisation",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"cardId\": \"{{cardId}}\",\n    \"amount\": 10,\n    \"network\": \"VISA\",\n    \"cardAcceptor\": {\n      \"mid\": \"11111\"\n    }\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/v2/cards/simulations/refund/authorization?accountId={{accountId}}",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"v2",
+										"cards",
+										"simulations",
+										"refund",
+										"authorization"
+									],
+									"query": [
+										{
+											"key": "accountId",
+											"value": "{{accountId}}",
+											"description": "The ID of the account to work with"
+										}
+									]
+								},
+								"description": "Simulates a card refund authorisation.\n\nThis endpoint is for testing purposes only and won't work in production."
+							},
+							"response": []
+						},
+						{
+							"name": "Simulate a card refund authorisation clearing",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"precedingRelatedTransactionToken\": \"\", //The token of the transaction to work with. This is the token received in the response to the authorisation request.\n    \"amount\": 10\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/v2/cards/simulations/refund/authorization/clearing",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"v2",
+										"cards",
+										"simulations",
+										"refund",
+										"authorization",
+										"clearing"
+									]
+								},
+								"description": "Simulates a card refund authorisation clearing.\n\nThis endpoint is for testing purposes only and won't work in production."
+							},
+							"response": []
+						},
+						{
+							"name": "Simulate a card ATM withdrawal authorisation",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"cardId\": \"{{cardId}}\",\n    \"amount\": 10,\n    \"network\": \"VISA\",\n    \"cardAcceptor\": {\n      \"mid\": \"11111\"\n    }\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/v2/cards/simulations/atm/withdrawal/authorization?accountId={{accountId}}",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"v2",
+										"cards",
+										"simulations",
+										"atm",
+										"withdrawal",
+										"authorization"
+									],
+									"query": [
+										{
+											"key": "accountId",
+											"value": "{{accountId}}",
+											"description": "The ID of the account to work with"
+										}
+									]
+								},
+								"description": "Simulates a card ATM withdrawal authorisation.\n\nThis endpoint is for testing purposes only and won't work in production."
+							},
+							"response": []
+						},
+						{
+							"name": "Simulate a card ATM withdrawal authorisation clearing",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"precedingRelatedTransactionToken\": \"\", //The token of the transaction to work with. This is the token received in the response to the authorisation request.\n    \"amount\": 10\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/v2/cards/simulations/atm/withdrawal/authorization/clearing",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"v2",
+										"cards",
+										"simulations",
+										"atm",
+										"withdrawal",
+										"authorization",
+										"clearing"
+									]
+								},
+								"description": "Simulates a card ATM withdrawal authorisation clearing.\n\nThis endpoint is for testing purposes only and won't work in production."
+							},
+							"response": []
+						}
+					]
+				}
+			],
+			"description": "Create and manage virtual, physical, and tokenised cards."
+		},
+		{
+			"name": "Transactions & reporting",
+			"item": [
+				{
+					"name": "Transaction activity",
+					"item": [
+						{
+							"name": "List all transaction activity",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/v2/activity/:accountId",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"v2",
+										"activity",
+										":accountId"
+									],
+									"query": [
+										{
+											"key": "limit",
+											"value": "100",
+											"description": "The maximum number of items to return. Default: 100",
+											"disabled": true
+										},
+										{
+											"key": "offset",
+											"value": "0",
+											"description": "The number of items to skip before returning the results. Default: 0",
+											"disabled": true
+										},
+										{
+											"key": "include",
+											"value": "bankFeedDetails",
+											"description": "Optional details to include in the response. Allowable values: \"bankFeedDetails\", \"annotations\", \"attachments\"",
+											"disabled": true
+										},
+										{
+											"key": "personId",
+											"value": "{{personId}}",
+											"description": "The ID of the person to work with. Use commas to pass multiple values. Has to be URL encoded",
+											"disabled": true
+										},
+										{
+											"key": "type",
+											"value": "payment,load",
+											"description": "The type to filter transactions by. Allowable values: \"exchange\", \"payment\", \"deposit\", \"forwardContract\", \"drawdown\", \"card\", \"cardCheck\", \"cardRefund\", \"cashWithdrawal\", \"atm\", \"unload\", \"otherDebit\", \"load\", \"cashback\", \"chargeback\", \"compensation\", \"otherCredit\", \"fee\"",
+											"disabled": true
+										},
+										{
+											"key": "excludeType",
+											"value": "payment",
+											"description": "The type to exclude in the transactions list. Allowable values: \"exchange\", \"payment\", \"deposit\", \"forwardContract\", \"drawdown\", \"card\", \"cardCheck\", \"cardRefund\", \"cashWithdrawal\", \"atm\", \"unload\", \"otherDebit\", \"load\", \"cashback\", \"chargeback\", \"compensation\", \"otherCredit\", \"fee\"",
+											"disabled": true
+										},
+										{
+											"key": "status",
+											"value": "complete,cancelled",
+											"description": "The status to filter transactions by. Allowable values: \"needsApproval\", \"fundsRequired\", \"pending\", \"complete\", \"declined\", \"reverted\", \"refunded\", \"cancelled\", \"open\", \"cardCheck\"",
+											"disabled": true
+										},
+										{
+											"key": "budgetId",
+											"value": "{{budgetId}}",
+											"description": "The budgetId to filter transactions by. Use commas to pass multiple values. Has to be URL encoded",
+											"disabled": true
+										},
+										{
+											"key": "budgetName",
+											"value": "Marketing",
+											"description": "The budgetName to filter transactions by. Use commas to pass multiple values. Has to be URL encoded",
+											"disabled": true
+										},
+										{
+											"key": "sellCurrency",
+											"value": "usd,gbp",
+											"description": "Filters transactions that include selling these currencies. Use commas to pass multiple values. Has to be URL encoded",
+											"disabled": true
+										},
+										{
+											"key": "buyCurrency",
+											"value": "gbp",
+											"description": "Filters orders that include purchasing these currencies. Use commas to pass multiple values. Has to be URL encoded",
+											"disabled": true
+										},
+										{
+											"key": "startDate",
+											"value": "2023-02-15",
+											"description": "The earliest date from which to retrieve records (includes records on this date)",
+											"disabled": true
+										},
+										{
+											"key": "endDate",
+											"value": "2023-03-30",
+											"description": "The latest date until which to retrieve records (includes records on this date)",
+											"disabled": true
+										},
+										{
+											"key": "search",
+											"value": "John+Smith",
+											"description": "Term to search the records for",
+											"disabled": true
+										},
+										{
+											"key": "annotationStatus",
+											"value": "draft,submitted",
+											"description": "If annotations is included in the include parameter, this will filter the transactions based on the status of the annotations. Allowable values: \"draft\", \"submitted\", \"unannotated\"",
+											"disabled": true
+										},
+										{
+											"key": "attachmentStatus",
+											"value": "absent,present",
+											"description": "If attachments is included in the include parameter, this will filter the transactions based on whether transactions have attachments or not. Allowable values: \"absent\", \"present\", \"lost\"",
+											"disabled": true
+										}
+									],
+									"variable": [
+										{
+											"key": "accountId",
+											"value": "{{accountId}}",
+											"description": "The ID of the account to work with"
+										}
+									]
+								},
+								"description": "Returns a list of transactions for a given account. Ordered chronologically by creation date, with the most recent transaction appearing first.\n\nYou can use optional parameters to filter the transactions. For example, use `budgetId` to return only transactions associated with a given budget."
+							},
+							"response": []
+						},
+						{
+							"name": "Generate a transaction activity CSV",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"accountId\": \"{{accountId}}\",\n    \"email\": \"john.doe@example.com\",\n    \"name\": \"John Doe\",\n    \"startDate\": \"2023-02-15\",\n    \"endDate\": \"2023-03-30\"\n  }",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/v2/activity/download",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"v2",
+										"activity",
+										"download"
+									]
+								},
+								"description": "Generates a transaction activity CSV. A transaction activity CSV is a list of all transactions generated for an account over a given period.\n\nOrdered chronologically by creation date, with the most recent transaction appearing first.\n\nThe `endDate` can be any date after the `startDate`, including the date on which you're making the request.\n\nYou can use optional parameters to filter the transactions. For example, use `budgetIds` to return only transactions associated with a given list of budgets."
+							},
+							"response": []
+						},
+						{
+							"name": "Generate a CSV or PDF statement",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"accountId\": \"{{accountId}}\",\n    \"email\": \"john.doe@example.com\",\n    \"name\": \"John Doe\",\n    \"startDate\": \"2023-02-15\",\n    \"endDate\": \"2023-03-30\",\n    \"currencyCodes\": \"EUR,GBP,USD\",\n    \"budgetIds\": [\n      \"{{budgetId}}\"\n    ],\n    \"fileFormat\": \"csv\"\n  }",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/v2/statement/download",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"v2",
+										"statement",
+										"download"
+									]
+								},
+								"description": "Generates a statement in CSV or PDF format, depending on the `fileFormat`. A statement is a list of completed transactions that occurred over a given period. Use `currencyCodes` and `budgetIds` to specify the currencies and budgets for which you want to retrieve transactions. You must include at least one of each, but can include several if you'd like. The `endDate` must be at least one day before the date on which you're making the request. This is because the statement can only be generated for full days."
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Payment confirmation",
+					"item": [
+						{
+							"name": "Download PDF confirmation of a payment",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/v2/payments/:paymentId/confirmation?accountId={{accountId}}",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"v2",
+										"payments",
+										":paymentId",
+										"confirmation"
+									],
+									"query": [
+										{
+											"key": "accountId",
+											"value": "{{accountId}}",
+											"description": "The ID of the account to work with"
+										}
+									],
+									"variable": [
+										{
+											"key": "paymentId",
+											"value": "{{paymentId}}",
+											"description": "The ID of the payment to work with"
+										}
+									]
+								},
+								"description": "Downloads a payment confirmation PDF for a given payment.\n\nA payment confirmation includes details about the remitting account, the transfer (including its status), the recipient, and the payment itself."
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Testing credits",
+					"item": [
+						{
+							"name": "Generate credits for testing purposes",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"budgetId\": \"{{budgetId}}\",\n    \"settlementPriceAmount\": \"200\",\n    \"settlementPriceCurrency\": \"GBP\",\n    \"remittersName\": \"Jane Doe\",\n    \"remittersAddress\": \"41 Middle Street, Enfield, EN1 3JY\",\n    \"beneficiaryName\": \"John Doe\"\n  }",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/v2/budgets/generate-credit?accountId={{accountId}}",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"v2",
+										"budgets",
+										"generate-credit"
+									],
+									"query": [
+										{
+											"key": "accountId",
+											"value": "{{accountId}}",
+											"description": "The ID of the account to work with"
+										}
+									]
+								},
+								"description": "Generate a credit (inbound payment) to a budget in sandbox.\n\nThis endpoint is for testing purposes only and won't work in production."
+							},
+							"response": []
+						}
+					]
+				}
+			],
+			"description": "View transaction activity and download reports in CSV or PDF format."
+		},
+		{
+			"name": "People",
+			"item": [
+				{
+					"name": "List people",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/v2/people?accountId={{accountId}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"v2",
+								"people"
+							],
+							"query": [
+								{
+									"key": "accountId",
+									"value": "{{accountId}}",
+									"description": "The ID of the account to work with"
+								},
+								{
+									"key": "limit",
+									"value": "100",
+									"description": "The maximum number of items to return. Default: 100",
+									"disabled": true
+								},
+								{
+									"key": "offset",
+									"value": "200",
+									"description": "The number of items to skip before returning the results. Default: 0",
+									"disabled": true
+								},
+								{
+									"key": "search",
+									"value": "Cesar+Treutel",
+									"description": "Term to search the records for",
+									"disabled": true
+								},
+								{
+									"key": "include",
+									"value": "persona.addresses",
+									"description": "Optional embeds to include when returning people. Allowable values: \"persona.addresses\", \"persona.createdBy\", \"persona.teams\", \"persona.primaryOwnerOf\", \"persona.roles\"",
+									"disabled": true
+								},
+								{
+									"key": "status",
+									"value": "active,created",
+									"description": "Filter people by their status on the account. Allowable values: \"active\", \"deactivated\", \"created\", \"invited\", \"inviteExpired\"",
+									"disabled": true
+								},
+								{
+									"key": "teams",
+									"value": "",
+									"description": "Filter people by team",
+									"disabled": true
+								},
+								{
+									"key": "roles",
+									"value": "",
+									"description": "Filter people by role",
+									"disabled": true
+								},
+								{
+									"key": "roleNames",
+									"value": "Admin",
+									"description": "Filter people by role names",
+									"disabled": true
+								},
+								{
+									"key": "people",
+									"value": "{{personId}}",
+									"description": "Filter people by personId",
+									"disabled": true
+								},
+								{
+									"key": "withoutIndividualBudget",
+									"value": "true",
+									"description": "Filter people without individual budget",
+									"disabled": true
+								},
+								{
+									"key": "budgetId",
+									"value": "{{budgetId}}",
+									"description": "The list of IDs of the Budgets to work with",
+									"disabled": true
+								}
+							]
+						},
+						"description": "Returns a list of people associated with a given account.\n\nYou can use the `include` parameter to retrieve additional details about people."
+					},
+					"response": []
+				},
+				{
+					"name": "Create a person",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"accountId\": \"{{accountId}}\",\n    \"firstName\": \"Jane\",\n    \"lastName\": \"Doe\",\n    \"roleName\": \"Viewer\",\n    \"emailAddress\": \"jane.doe@example.com\"\n  }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/v2/people",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"v2",
+								"people"
+							]
+						},
+						"description": "Creates a person and adds them to a given account. The email address provided for this person will be used to identify them and cannot be changed later.\n\nIf a person with this email address already exists, this request will add the existing person to the account."
+					},
+					"response": []
+				},
+				{
+					"name": "Update a person",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"accountId\": \"{{accountId}}\",\n    \"firstName\": \"Jane\",\n    \"lastName\": \"Doe\",\n    \"title\": \"Mrs\",\n    \"middleInitials\": \"R\",\n    \"dob\": \"1976-05-23\",\n    \"gender\": \"Female\",\n    \"nationality\": \"UK\",\n    \"countryOfResidence\": \"UK\",\n    \"primaryMobileNumber\": \"+447798121212\"\n  }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/v2/people/:personId",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"v2",
+								"people",
+								":personId"
+							],
+							"variable": [
+								{
+									"key": "personId",
+									"value": "{{personId}}",
+									"description": "The ID of the person to work with"
+								}
+							]
+						},
+						"description": "Updates a given person's details."
+					},
+					"response": []
+				},
+				{
+					"name": "Update a persona",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"emailAddress\": \"john.doe@example.com\",\n    \"employeeNumber\": \"948947464\",\n    \"workNumber\": \"(807) 940-7411 x8855\",\n    \"jobTitle\": \"Human Division Manager\",\n    \"status\": \"active\",\n    \"transactionalEmailPreference\": true,\n    \"cardTransactionPushNotificationPreference\": false\n  }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/v2/personas/:personaId?accountId={{accountId}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"v2",
+								"personas",
+								":personaId"
+							],
+							"query": [
+								{
+									"key": "accountId",
+									"value": "{{accountId}}",
+									"description": "The ID of the account to work with"
+								}
+							],
+							"variable": [
+								{
+									"key": "personaId",
+									"value": "{{personaId}}",
+									"description": "The ID of the persona to work with"
+								}
+							]
+						},
+						"description": "Updates the details of the specified persona."
+					},
+					"response": []
+				},
+				{
+					"name": "List roles",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/v2/roles",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"v2",
+								"roles"
+							],
+							"query": [
+								{
+									"key": "accountId",
+									"value": "{{accountId}}",
+									"description": "The ID of the account to work with",
+									"disabled": true
+								},
+								{
+									"key": "limit",
+									"value": "100",
+									"description": "The maximum number of items to return. Default: 100",
+									"disabled": true
+								},
+								{
+									"key": "offset",
+									"value": "200",
+									"description": "The number of items to skip before returning the results. Default: 0",
+									"disabled": true
+								}
+							]
+						},
+						"description": "Lists the available roles that can be assigned to a person to determine their access and permissions."
+					},
+					"response": []
+				},
+				{
+					"name": "Update a persona's role",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\"roleName\": \"Accountant\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/v2/personas/:personaId/role?accountId={{accountId}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"v2",
+								"personas",
+								":personaId",
+								"role"
+							],
+							"query": [
+								{
+									"key": "accountId",
+									"value": "{{accountId}}",
+									"description": "The ID of the account you want to use"
+								}
+							],
+							"variable": [
+								{
+									"key": "personaId",
+									"value": "{{personaId}}",
+									"description": "The ID of the persona to work with"
+								}
+							]
+						},
+						"description": "Updates the role of the specified persona."
+					},
+					"response": []
+				}
+			],
+			"description": "Invite people to your accounts and manage their access."
+		},
+		{
+			"name": "Webhooks",
+			"item": [
+				{
+					"name": "List webhook event types",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/v2/webhooks/event-types",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"v2",
+								"webhooks",
+								"event-types"
+							],
+							"query": [
+								{
+									"key": "accountId",
+									"value": "{{accountId}}",
+									"description": "The account ID to filter the response with (required for user-level API key)",
+									"disabled": true
+								}
+							]
+						},
+						"description": "Returns a list of all available webhook event types."
+					},
+					"response": []
+				},
+				{
+					"name": "Retrieve a webhook event type",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/v2/webhooks/event-types/:webhookEventTypeId",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"v2",
+								"webhooks",
+								"event-types",
+								":webhookEventTypeId"
+							],
+							"query": [
+								{
+									"key": "accountId",
+									"value": "{{accountId}}",
+									"description": "The account ID to filter the response with (required for user-level API key)",
+									"disabled": true
+								}
+							],
+							"variable": [
+								{
+									"key": "webhookEventTypeId",
+									"value": "a4dcc403-41aa-4f2e-acf6-32dbaec78e72",
+									"description": "The ID of the webhook event type to work with"
+								}
+							]
+						},
+						"description": "Returns the details of a given webhook event type, based on its `webhookEventTypeId`."
+					},
+					"response": []
+				},
+				{
+					"name": "List webhooks",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/v2/webhooks",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"v2",
+								"webhooks"
+							],
+							"query": [
+								{
+									"key": "limit",
+									"value": "100",
+									"description": "The maximum number of items to return. Default: 100",
+									"disabled": true
+								},
+								{
+									"key": "offset",
+									"value": "200",
+									"description": "The number of items to skip before returning the results. Default: 0",
+									"disabled": true
+								},
+								{
+									"key": "webhookEventTypeId",
+									"value": "a4dcc403-41aa-4f2e-acf6-32dbaec78e72",
+									"description": "Optional ID of the webhook event type to filter the response with",
+									"disabled": true
+								},
+								{
+									"key": "enabled",
+									"value": "true",
+									"description": "Optional query parameter to filter the response with (whether the webhook is enabled or not)",
+									"disabled": true
+								},
+								{
+									"key": "webhookEventTypeName",
+									"value": "AccountActivated",
+									"description": "Optional name of the webhook event type to filter the response with",
+									"disabled": true
+								},
+								{
+									"key": "accountId",
+									"value": "{{accountId}}",
+									"description": "Account ID to filter the response with (required for user-level API key)",
+									"disabled": true
+								}
+							]
+						},
+						"description": "Returns a list of webhooks.\n\nYou can use optional parameters to filter webhooks. For example, use `enabled=true` to return only webhooks that are currently enabled."
+					},
+					"response": []
+				},
+				{
+					"name": "Create a new webhook",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"enabled\": true,\n    \"webhookEventTypeName\": \"AccountActivated\",\n    \"url\": \"\" // The URL of the webhook endpoint\n  }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/v2/webhooks",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"v2",
+								"webhooks"
+							]
+						},
+						"description": "Creates a new webhook, based on a given `webhookEventTypeName` or `webhookEventTypeId`."
+					},
+					"response": []
+				},
+				{
+					"name": "Retrieve a webhook",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/v2/webhooks/:webhookId",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"v2",
+								"webhooks",
+								":webhookId"
+							],
+							"query": [
+								{
+									"key": "accountId",
+									"value": "{{accountId}}",
+									"description": "The account ID to filter the response with (required for user-level API key)",
+									"disabled": true
+								}
+							],
+							"variable": [
+								{
+									"key": "webhookId",
+									"value": "{{webhookId}}",
+									"description": "The ID of the webhook to work with"
+								}
+							]
+						},
+						"description": "Returns the details of a given webhook, based on its `webhookId`."
+					},
+					"response": []
+				},
+				{
+					"name": "Update a webhook",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"enabled\": false\n  }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/v2/webhooks/:webhookId",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"v2",
+								"webhooks",
+								":webhookId"
+							],
+							"query": [
+								{
+									"key": "accountId",
+									"value": "{{accountId}}",
+									"description": "The account ID to filter the response with (required for user-level API key)",
+									"disabled": true
+								}
+							],
+							"variable": [
+								{
+									"key": "webhookId",
+									"value": "{{webhookId}}",
+									"description": "The ID of the webhook to work with"
+								}
+							]
+						},
+						"description": "Updates the details of a given webhook, based on its `webhookId`."
+					},
+					"response": []
+				},
+				{
+					"name": "Delete a webhook",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/v2/webhooks/:webhookId",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"v2",
+								"webhooks",
+								":webhookId"
+							],
+							"query": [
+								{
+									"key": "accountId",
+									"value": "{{accountId}}",
+									"description": "The account ID to filter the response with (required for user-level API key)",
+									"disabled": true
+								}
+							],
+							"variable": [
+								{
+									"key": "webhookId",
+									"value": "{{webhookId}}",
+									"description": "The ID of the webhook to work with"
+								}
+							]
+						},
+						"description": "Deletes a given webhook, based on its `id`."
+					},
+					"response": []
+				}
+			],
+			"description": "Set up webhooks and subscribe to real-time event notifications."
+		}
+	],
+	"auth": {
+		"type": "apikey",
+		"apikey": [
+			{
+				"key": "value",
+				"value": "ApiKey {{apiKey}}",
+				"type": "string"
+			},
+			{
+				"key": "key",
+				"value": "Authorization",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}

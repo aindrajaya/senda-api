@@ -1,0 +1,1727 @@
+    /auth/register/account:
+    post:
+      operationId: UserController_registerAccount
+      summary: Register a new account on Equals Money
+      description: Register a new account using the Equals Money API onboarding endpoint.
+      tags:
+        - Authentication & Registration
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EqualsMoneyAccountRegistrationDto'
+      responses:
+        '201':
+          description: Account registered successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EqualsMoneyAccountRegistrationResponseDto'
+        '400':
+          description: Bad request
+        '409':
+          description: Account already exists
+openapi: 3.0.0
+paths:
+  /:
+    get:
+      operationId: AppController_getHello
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      tags:
+        - App
+  /auth/register/company:
+    post:
+      operationId: UserController_registerCompany
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RegisterCompanyDto'
+      responses:
+        '201':
+          description: Company registered successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RegistrationResponseDto'
+        '400':
+          description: Bad request
+        '409':
+          description: Company or email already exists
+      summary: Register a new company with CEO/admin user
+      tags:
+        - Authentication & Registration
+  /auth/register/team-member:
+    post:
+      operationId: UserController_registerTeamMember
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RegisterTeamMemberDto'
+      responses:
+        '201':
+          description: Team member registered successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RegistrationResponseDto'
+        '400':
+          description: Bad request
+        '404':
+          description: Invalid invitation
+        '409':
+          description: Email already exists
+      summary: Register a new team member via invitation
+      tags:
+        - Authentication & Registration
+  /auth/login:
+    post:
+      operationId: UserController_login
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LoginDto'
+      responses:
+        '200':
+          description: Login successful
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthResponseDto'
+        '401':
+          description: Invalid credentials
+      summary: Login user
+      tags:
+        - Authentication & Registration
+  /auth/admin/login:
+    post:
+      operationId: UserController_adminLogin
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LoginDto'
+      responses:
+        '200':
+          description: Admin login successful
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthResponseDto'
+        '401':
+          description: Invalid credentials
+      summary: Login app admin
+      tags:
+        - Authentication & Registration
+  /auth/verify/email/{userId}:
+    post:
+      operationId: UserController_verifyEmail
+      parameters:
+        - name: userId
+          required: true
+          in: path
+          description: User ID
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/VerifyOtpDto'
+      responses:
+        '200':
+          description: Email verification result
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OtpResponseDto'
+        '404':
+          description: User not found
+      summary: Verify user email with OTP
+      tags:
+        - Authentication & Registration
+  /auth/verify/phone/{userId}:
+    post:
+      operationId: UserController_verifyPhone
+      parameters:
+        - name: userId
+          required: true
+          in: path
+          description: User ID
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/VerifyOtpDto'
+      responses:
+        '200':
+          description: Phone verification result
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OtpResponseDto'
+        '404':
+          description: User not found
+      summary: Verify user phone with OTP
+      tags:
+        - Authentication & Registration
+  /auth/resend-otp/{userId}/{type}:
+    post:
+      operationId: UserController_resendOtp
+      parameters:
+        - name: userId
+          required: true
+          in: path
+          description: User ID
+          schema:
+            type: string
+        - name: type
+          required: true
+          in: path
+          description: OTP type
+          schema:
+            enum:
+              - email
+              - phone
+            type: string
+      responses:
+        '200':
+          description: OTP resend result
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OtpResponseDto'
+        '404':
+          description: User not found
+      summary: Resend verification OTP
+      tags:
+        - Authentication & Registration
+  /auth/profile:
+    get:
+      operationId: UserController_getProfile
+      parameters: []
+      responses:
+        '200':
+          description: User profile retrieved successfully
+        '401':
+          description: Unauthorized
+      security:
+        - bearer: []
+      summary: Get current user profile
+      tags:
+        - Authentication & Registration
+  /team/invite:
+    post:
+      operationId: TeamController_sendInvitation
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SendInvitationDto'
+      responses:
+        '201':
+          description: Invitation sent successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InvitationResponseDto'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Only admins can send invitations
+        '409':
+          description: User already exists or invitation pending
+      security:
+        - bearer: []
+      summary: Send invitation to join team (Admin only)
+      tags:
+        - Team Management
+  /team/validate-invitation:
+    get:
+      operationId: TeamController_validateInvitation
+      parameters:
+        - name: token
+          required: true
+          in: query
+          description: Invitation token
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Invitation validation result
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidateInvitationResponseDto'
+      summary: Validate invitation token
+      tags:
+        - Team Management
+  /team/invitations:
+    get:
+      operationId: TeamController_getCompanyInvitations
+      parameters: []
+      responses:
+        '200':
+          description: List of company invitations
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/InvitationDetailsDto'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Only admins can view invitations
+      security:
+        - bearer: []
+      summary: Get all company invitations (Admin only)
+      tags:
+        - Team Management
+  /team/invitations/{invitationId}:
+    delete:
+      operationId: TeamController_cancelInvitation
+      parameters:
+        - name: invitationId
+          required: true
+          in: path
+          description: Invitation ID
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Invitation cancelled successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InvitationResponseDto'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Only admins can cancel invitations
+        '404':
+          description: Invitation not found
+      security:
+        - bearer: []
+      summary: Cancel pending invitation (Admin only)
+      tags:
+        - Team Management
+  /team/members:
+    get:
+      operationId: TeamController_getTeamMembers
+      parameters: []
+      responses:
+        '200':
+          description: List of team members
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/TeamMemberDto'
+        '401':
+          description: Unauthorized
+      security:
+        - bearer: []
+      summary: Get all team members
+      tags:
+        - Team Management
+  /team/members/{memberId}/deactivate:
+    patch:
+      operationId: TeamController_deactivateTeamMember
+      parameters:
+        - name: memberId
+          required: true
+          in: path
+          description: Team member ID
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Team member deactivated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InvitationResponseDto'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Only admins can deactivate members
+        '404':
+          description: Team member not found
+      security:
+        - bearer: []
+      summary: Deactivate team member (Admin only)
+      tags:
+        - Team Management
+  /team/members/{memberId}/reactivate:
+    patch:
+      operationId: TeamController_reactivateTeamMember
+      parameters:
+        - name: memberId
+          required: true
+          in: path
+          description: Team member ID
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Team member reactivated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InvitationResponseDto'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Only admins can reactivate members
+        '404':
+          description: Team member not found
+      security:
+        - bearer: []
+      summary: Reactivate team member (Admin only)
+      tags:
+        - Team Management
+  /password/forgot:
+    post:
+      operationId: PasswordResetController_forgotPassword
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ForgotPasswordDto'
+      responses:
+        '200':
+          description: Password reset request processed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PasswordResetResponseDto'
+        '400':
+          description: Bad request
+      summary: Request password reset OTP
+      tags:
+        - Password Reset
+  /password/reset:
+    post:
+      operationId: PasswordResetController_resetPassword
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ResetPasswordDto'
+      responses:
+        '200':
+          description: Password reset result
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PasswordResetResponseDto'
+        '400':
+          description: Bad request
+      summary: Reset password using OTP
+      tags:
+        - Password Reset
+  /password/change:
+    post:
+      operationId: PasswordResetController_changePassword
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ChangePasswordDto'
+      responses:
+        '200':
+          description: Password changed successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PasswordResetResponseDto'
+        '400':
+          description: Bad request
+        '401':
+          description: Unauthorized
+      security:
+        - bearer: []
+      summary: Change password (authenticated users)
+      tags:
+        - Password Reset
+  /admin:
+    post:
+      description: Create a new application administrator. Only existing app admins can create new ones.
+      operationId: AppAdminController_createAppAdmin
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateAppAdminDto'
+      responses:
+        '201':
+          description: App admin created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AppAdminResponseDto'
+        '400':
+          description: Invalid input data
+        '401':
+          description: Unauthorized
+        '403':
+          description: Only app admins can create new admins
+        '409':
+          description: Email address already exists
+      security:
+        - bearer: []
+      summary: Create new app admin
+      tags:
+        - App Admin Management
+    get:
+      description: Retrieve a list of all application administrators.
+      operationId: AppAdminController_getAllAppAdmins
+      parameters: []
+      responses:
+        '200':
+          description: List of app admins retrieved successfully
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/AppAdminResponseDto'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Only app admins can view admin list
+      security:
+        - bearer: []
+      summary: Get all app admins
+      tags:
+        - App Admin Management
+  /admin/stats:
+    get:
+      description: Retrieve comprehensive system statistics including user counts, company counts, etc.
+      operationId: AppAdminController_getSystemStats
+      parameters: []
+      responses:
+        '200':
+          description: System statistics retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AppAdminStatsDto'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Only app admins can view system stats
+      security:
+        - bearer: []
+      summary: Get system statistics
+      tags:
+        - App Admin Management
+  /admin/companies:
+    get:
+      description: Retrieve a list of all registered companies with their user counts.
+      operationId: AppAdminController_getAllCompanies
+      parameters: []
+      responses:
+        '200':
+          description: List of companies retrieved successfully
+        '401':
+          description: Unauthorized
+        '403':
+          description: Only app admins can view companies
+      security:
+        - bearer: []
+      summary: Get all companies
+      tags:
+        - App Admin Management
+  /admin/users:
+    get:
+      description: Retrieve a list of all registered users across all companies.
+      operationId: AppAdminController_getAllUsers
+      parameters: []
+      responses:
+        '200':
+          description: List of users retrieved successfully
+        '401':
+          description: Unauthorized
+        '403':
+          description: Only app admins can view all users
+      security:
+        - bearer: []
+      summary: Get all users
+      tags:
+        - App Admin Management
+  /admin/profile:
+    get:
+      description: Retrieve the profile information of the currently authenticated app admin.
+      operationId: AppAdminController_getCurrentAdminProfile
+      parameters: []
+      responses:
+        '200':
+          description: Admin profile retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AppAdminResponseDto'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Only app admins can view admin profiles
+      security:
+        - bearer: []
+      summary: Get current admin profile
+      tags:
+        - App Admin Management
+  /admin/{id}:
+    get:
+      description: Retrieve a specific application administrator by their ID.
+      operationId: AppAdminController_getAppAdminById
+      parameters:
+        - name: id
+          required: true
+          in: path
+          description: App admin ID
+          schema:
+            type: string
+      responses:
+        '200':
+          description: App admin retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AppAdminResponseDto'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Only app admins can view admin details
+        '404':
+          description: App admin not found
+      security:
+        - bearer: []
+      summary: Get app admin by ID
+      tags:
+        - App Admin Management
+    put:
+      description: Update an existing application administrator's information.
+      operationId: AppAdminController_updateAppAdmin
+      parameters:
+        - name: id
+          required: true
+          in: path
+          description: App admin ID
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateAppAdminDto'
+      responses:
+        '200':
+          description: App admin updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AppAdminResponseDto'
+        '400':
+          description: Invalid input data
+        '401':
+          description: Unauthorized
+        '403':
+          description: Only app admins can update admin details
+        '404':
+          description: App admin not found
+        '409':
+          description: Email address already exists
+      security:
+        - bearer: []
+      summary: Update app admin
+      tags:
+        - App Admin Management
+    delete:
+      description: Delete an application administrator. Use with caution as this action is irreversible.
+      operationId: AppAdminController_deleteAppAdmin
+      parameters:
+        - name: id
+          required: true
+          in: path
+          description: App admin ID
+          schema:
+            type: string
+      responses:
+        '200':
+          description: App admin deleted successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  message:
+                    type: string
+                    example: App admin deleted successfully
+        '401':
+          description: Unauthorized
+        '403':
+          description: Only app admins can delete other admins
+        '404':
+          description: App admin not found
+      security:
+        - bearer: []
+      summary: Delete app admin
+      tags:
+        - App Admin Management
+  /company/data:
+    get:
+      operationId: CompanyController_getCompanyData
+      summary: Get company data from Companies House (Public)
+      description: Publicly accessible endpoint to retrieve company information and director details from the UK Companies House API using the company number/business ID
+      tags:
+        - Company Information
+      parameters:
+        - name: business_id
+          required: true
+          in: query
+          description: Company registration number (Companies House number)
+          schema:
+            type: string
+          example: '09542738'
+      responses:
+        '200':
+          description: Company data retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CompanyDataResponse'
+        '404':
+          description: Company not found or unable to retrieve information
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CompanyDataResponse'
+        '408':
+          description: Request timeout
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CompanyDataResponse'
+        '422':
+          description: Validation error
+        '429':
+          description: Too many requests
+  /api/eqm/accounts:
+    get:
+      operationId: EqualsMoneyController_getAccounts
+      summary: Get all accounts from Equals Money
+      tags:
+        - Equals Money
+      responses:
+        '200':
+          description: Accounts retrieved successfully
+  /api/eqm/currencies:
+    get:
+      operationId: EqualsMoneyController_getSupportedCurrencies
+      summary: Get supported currencies from Equals Money (Development Mode)
+      description: DEVELOPMENT MODE - Returns static currency list without any API calls, authentication, OTP, phone, or email verification required. Completely public endpoint for testing.
+      tags:
+        - Equals Money
+      parameters:
+        - name: accountId
+          required: false
+          in: query
+          description: Optional mock account ID to get currencies with sample balances (Development Mode)
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Currencies retrieved successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  message:
+                    type: string
+                    example: Common supported currencies retrieved
+                  currencies:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        code:
+                          type: string
+                          example: GBP
+                        name:
+                          type: string
+                          example: British Pound Sterling
+                        enabled:
+                          type: boolean
+                          example: true
+                        balances:
+                          type: object
+                          properties:
+                            available:
+                              type: string
+                              example: '1000.00'
+                            pending:
+                              type: string
+                              example: '0.00'
+  /api/eqm/onboard-account:
+    post:
+      operationId: EqualsMoneyController_onboardAccount
+      summary: Register/onboard a new account on Equals Money
+      tags:
+        - Equals Money
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EqualsMoneyAccountRegistrationDto'
+      responses:
+        '201':
+          description: Account registered successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EqualsMoneyAccountRegistrationResponseDto'
+        '400':
+          description: Bad request
+        '409':
+          description: Account already exists
+info:
+  title: Company Management API
+  description: API for managing companies, users, and teams
+  version: '1.0'
+  contact: {}
+tags:
+  - name: Company Information
+    description: Retrieve company data from Companies House API
+  - name: Equals Money
+    description: EqualsMoney API integration for financial services
+servers: []
+components:
+  securitySchemes:
+    bearer:
+      scheme: bearer
+      bearerFormat: JWT
+      type: http
+  schemas:
+    RegisterCompanyDto:
+      type: object
+      properties:
+        companyNumber:
+          type: string
+          description: Company registration number
+          example: REG123456789
+        companyName:
+          type: string
+          description: Company name
+          example: Tech Solutions Ltd
+        address:
+          type: string
+          description: Company address
+          example: 123 Business Street, City, Country
+        directors:
+          description: List of company directors
+          example:
+            - John Doe
+            - Jane Smith
+          type: array
+          items:
+            type: string
+        adminName:
+          type: string
+          description: CEO/Admin name
+          example: John Doe
+        adminEmail:
+          type: string
+          description: CEO/Admin email address
+          example: john.doe@techsolutions.com
+        adminPhone:
+          type: string
+          description: CEO/Admin phone number
+          example: '+1234567890'
+        adminPassword:
+          type: string
+          description: CEO/Admin password
+          example: SecurePassword123!
+          minLength: 8
+      required:
+        - companyNumber
+        - companyName
+        - address
+        - directors
+        - adminName
+        - adminEmail
+        - adminPhone
+        - adminPassword
+    RegistrationResponseDto:
+      type: object
+      properties:
+        success:
+          type: boolean
+          description: Success status
+          example: true
+        message:
+          type: string
+          description: Response message
+          example: Company registered successfully. Please verify your email and phone.
+        userId:
+          type: string
+          description: User ID for verification
+          example: uuid-here
+        companyId:
+          type: string
+          description: Company ID
+          example: uuid-here
+      required:
+        - success
+        - message
+        - userId
+        - companyId
+    RegisterTeamMemberDto:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Team member name
+          example: Jane Smith
+        email:
+          type: string
+          description: Team member email address
+          example: jane.smith@techsolutions.com
+        phone:
+          type: string
+          description: Team member phone number
+          example: '+1234567891'
+        password:
+          type: string
+          description: Team member password
+          example: SecurePassword123!
+          minLength: 8
+        invitationToken:
+          type: string
+          description: Invitation token
+          example: uuid-token-here
+      required:
+        - name
+        - email
+        - phone
+        - password
+        - invitationToken
+    LoginDto:
+      type: object
+      properties:
+        email:
+          type: string
+          description: Email address
+          example: user@example.com
+        password:
+          type: string
+          description: Password
+          example: password123
+        userType:
+          type: string
+          description: User type (user or admin)
+          example: user
+          enum:
+            - user
+            - admin
+          default: user
+      required:
+        - email
+        - password
+        - userType
+    AuthResponseDto:
+      type: object
+      properties:
+        access_token:
+          type: string
+          description: JWT access token
+          example: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...
+        user:
+          type: object
+          description: User information
+      required:
+        - access_token
+        - user
+    VerifyOtpDto:
+      type: object
+      properties:
+        code:
+          type: string
+          description: 6-digit OTP code
+          example: '123456'
+          minLength: 6
+          maxLength: 6
+        type:
+          type: string
+          description: Type of OTP to verify
+          enum:
+            - email_verification
+            - phone_verification
+            - password_reset
+          example: email_verification
+        email:
+          type: string
+          description: Email address associated with the OTP
+          example: user@example.com
+        phone:
+          type: string
+          description: Phone number associated with the OTP
+          example: '+1234567890'
+      required:
+        - code
+        - type
+    OtpResponseDto:
+      type: object
+      properties:
+        success:
+          type: boolean
+          description: Whether the operation was successful
+          example: true
+        message:
+          type: string
+          description: Response message
+          example: OTP sent successfully
+      required:
+        - success
+        - message
+    SendInvitationDto:
+      type: object
+      properties:
+        email:
+          type: string
+          description: Email address of the person to invite
+          example: newmember@example.com
+      required:
+        - email
+    InvitationResponseDto:
+      type: object
+      properties:
+        success:
+          type: boolean
+          description: Success status
+          example: true
+        message:
+          type: string
+          description: Response message
+          example: Invitation sent successfully
+        invitationId:
+          type: string
+          description: Invitation ID
+          example: uuid-here
+      required:
+        - success
+        - message
+    InvitationDetailsDto:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Invitation ID
+          example: uuid-here
+        email:
+          type: string
+          description: Email address of the invitee
+          example: newmember@example.com
+        token:
+          type: string
+          description: Invitation token
+          example: uuid-token-here
+        status:
+          type: string
+          description: Invitation status
+          enum:
+            - pending
+            - accepted
+            - expired
+            - cancelled
+          example: pending
+        expiresAt:
+          format: date-time
+          type: string
+          description: Invitation expiry date
+          example: '2024-01-01T00:00:00.000Z'
+        acceptedAt:
+          format: date-time
+          type: string
+          description: Date when invitation was accepted
+          example: '2024-01-01T00:00:00.000Z'
+        invitedByName:
+          type: string
+          description: Name of the person who sent the invitation
+          example: John Doe
+        companyName:
+          type: string
+          description: Company name
+          example: Tech Solutions Ltd
+        createdAt:
+          format: date-time
+          type: string
+          description: Date when invitation was created
+          example: '2024-01-01T00:00:00.000Z'
+      required:
+        - id
+        - email
+        - token
+        - status
+        - expiresAt
+        - invitedByName
+        - companyName
+        - createdAt
+    ValidateInvitationResponseDto:
+      type: object
+      properties:
+        valid:
+          type: boolean
+          description: Whether the invitation is valid
+          example: true
+        message:
+          type: string
+          description: Response message
+          example: Invitation is valid
+        invitation:
+          description: Invitation details if valid
+          allOf:
+            - $ref: '#/components/schemas/InvitationDetailsDto'
+      required:
+        - valid
+        - message
+    TeamMemberDto:
+      type: object
+      properties:
+        id:
+          type: string
+          description: User ID
+          example: uuid-here
+        name:
+          type: string
+          description: Team member name
+          example: Jane Smith
+        email:
+          type: string
+          description: Team member email
+          example: jane.smith@example.com
+        phone:
+          type: string
+          description: Team member phone
+          example: '+1234567890'
+        role:
+          type: string
+          description: Team member role
+          example: member
+        emailVerificationStatus:
+          type: string
+          description: Email verification status
+          example: verified
+        phoneVerificationStatus:
+          type: string
+          description: Phone verification status
+          example: verified
+        isActive:
+          type: boolean
+          description: Whether the user is active
+          example: true
+        createdAt:
+          format: date-time
+          type: string
+          description: Date when user joined
+          example: '2024-01-01T00:00:00.000Z'
+      required:
+        - id
+        - name
+        - email
+        - phone
+        - role
+        - emailVerificationStatus
+        - phoneVerificationStatus
+        - isActive
+        - createdAt
+    ForgotPasswordDto:
+      type: object
+      properties:
+        identifier:
+          type: string
+          description: Email address or phone number for password reset
+          example: user@example.com
+        method:
+          type: string
+          description: Method to receive OTP (email or phone)
+          example: email
+          enum:
+            - email
+            - phone
+        userType:
+          type: string
+          description: User type (user or admin)
+          example: user
+          enum:
+            - user
+            - admin
+          default: user
+      required:
+        - identifier
+        - method
+        - userType
+    PasswordResetResponseDto:
+      type: object
+      properties:
+        success:
+          type: boolean
+          description: Success status
+          example: true
+        message:
+          type: string
+          description: Response message
+          example: Password reset OTP sent successfully
+      required:
+        - success
+        - message
+    ResetPasswordDto:
+      type: object
+      properties:
+        otpCode:
+          type: string
+          description: 6-digit OTP code
+          example: '123456'
+          minLength: 6
+          maxLength: 6
+        identifier:
+          type: string
+          description: Email address or phone number used for password reset
+          example: user@example.com
+        newPassword:
+          type: string
+          description: New password
+          example: NewSecurePassword123!
+          minLength: 8
+        userType:
+          type: string
+          description: User type (user or admin)
+          example: user
+          enum:
+            - user
+            - admin
+          default: user
+      required:
+        - otpCode
+        - identifier
+        - newPassword
+        - userType
+    ChangePasswordDto:
+      type: object
+      properties:
+        currentPassword:
+          type: string
+          description: Current password
+          example: CurrentPassword123!
+        newPassword:
+          type: string
+          description: New password
+          example: NewSecurePassword123!
+          minLength: 8
+      required:
+        - currentPassword
+        - newPassword
+    CreateAppAdminDto:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Admin name
+          example: Super Admin
+        email:
+          type: string
+          description: Admin email address
+          example: admin@company.com
+        password:
+          type: string
+          description: Admin password
+          example: SecureAdminPassword123!
+          minLength: 8
+      required:
+        - name
+        - email
+        - password
+    AppAdminResponseDto:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Admin ID
+          example: uuid-here
+        name:
+          type: string
+          description: Admin name
+          example: Super Admin
+        email:
+          type: string
+          description: Admin email address
+          example: admin@company.com
+        isActive:
+          type: boolean
+          description: Whether the admin is active
+          example: true
+        createdAt:
+          format: date-time
+          type: string
+          description: Date when admin was created
+          example: '2024-01-01T00:00:00.000Z'
+        updatedAt:
+          format: date-time
+          type: string
+          description: Date when admin was last updated
+          example: '2024-01-01T00:00:00.000Z'
+      required:
+        - id
+        - name
+        - email
+        - isActive
+        - createdAt
+        - updatedAt
+    AppAdminStatsDto:
+      type: object
+      properties:
+        totalCompanies:
+          type: number
+          description: Total number of companies
+          example: 150
+        totalUsers:
+          type: number
+          description: Total number of users
+          example: 1250
+        activeUsers:
+          type: number
+          description: Total number of active users
+          example: 1100
+        pendingInvitations:
+          type: number
+          description: Total number of pending invitations
+          example: 25
+        totalAppAdmins:
+          type: number
+          description: Total number of app admins
+          example: 3
+      required:
+        - totalCompanies
+        - totalUsers
+        - activeUsers
+        - pendingInvitations
+        - totalAppAdmins
+    UpdateAppAdminDto:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Admin name
+          example: Super Admin
+        email:
+          type: string
+          description: Admin email address
+          example: admin@company.com
+        isActive:
+          type: boolean
+          description: Whether the admin is active
+          example: true
+    EqualsMoneyAccountRegistrationDto:
+      type: object
+      properties:
+        market:
+          type: string
+          description: Market
+          example: "UK"
+          enum:
+            - UK
+            - EU
+        features:
+          type: array
+          items:
+            type: string
+          description: Features required
+          example: ["payments"]
+        accountType:
+          type: string
+          description: Account type
+          example: "business"
+          enum:
+            - business
+            - personal
+        contact:
+          type: object
+          properties:
+            firstName:
+              type: string
+              description: "First name"
+              example: "John"
+            lastName:
+              type: string
+              description: "Last name"
+              example: "Doe"
+            email:
+              type: string
+              example: "john.doe@example.com"
+            phone:
+              type: string
+              example: "+447123456789"
+            dob:
+              type: string
+              example: "19/01/1946"
+            address:
+              type: object
+              properties:
+                addressLine1:
+                  type: string
+                  example: "Great Building"
+                addressLine2:
+                  type: string
+                  example: "Greater Building"
+                townCity:
+                  type: string
+                  example: "My Town"
+                postCode:
+                  type: string
+                  example: "SE13UB"
+                countryCode:
+                  type: string
+                  example: "GB"
+              required:
+                - addressLine1
+                - townCity
+                - postCode
+                - countryCode
+          required:
+            - name
+            - email
+            - phone
+            - dob
+            - address
+        account:
+          type: object
+          properties:
+            companyName:
+              type: string
+              example: "ACME international"
+            companyNumber:
+              type: string
+              example: "1111111111"
+            incorporationDate:
+              type: string
+              format: date
+              example: "1980-01-30"
+            type:
+              type: string
+              example: "llp"
+              enum:
+                - llc
+                - llp
+                - plc
+                - ltd
+            website:
+              type: string
+              example: "https://www.exampleurl.com"
+            onboardingDetail:
+              type: string
+              example: "Additional details about the account"
+            address:
+              type: object
+              properties:
+                addressLine1:
+                  type: string
+                  example: "Great Building"
+                addressLine2:
+                  type: string
+                  example: "Greater Building"
+                townCity:
+                  type: string
+                  example: "My Town"
+                postCode:
+                  type: string
+                  example: "SE13UB"
+                countryCode:
+                  type: string
+                  example: "GB"
+              required:
+                - addressLine1
+                - townCity
+                - postCode
+                - countryCode
+          required:
+            - companyName
+            - companyNumber
+            - incorporationDate
+            - type
+            - address
+        kyc:
+          type: object
+          properties:
+            mainPurpose:
+              type: array
+              items:
+                type: string
+              example: ["Investment"]
+            sourceOfFunds:
+              type: array
+              items:
+                type: string
+              example: ["salary"]
+            destinationOfFunds:
+              type: array
+              items:
+                type: string
+              example: ["GB"]
+            currenciesRequired:
+              type: array
+              items:
+                type: string
+              example: ["GBP"]
+            annualVolume:
+              type: string
+              example: "Less than £10,000"
+            numberOfPayments:
+              type: string
+              example: "More than 20 payments"
+          required:
+            - mainPurpose
+            - sourceOfFunds
+            - destinationOfFunds
+            - currenciesRequired
+            - annualVolume
+            - numberOfPayments
+      required:
+        - market
+        - features
+        - accountType
+        - contact
+        - account
+        - kyc
+    EqualsMoneyAccountRegistrationResponseDto:
+      type: object
+      properties:
+        success:
+          type: boolean
+          description: Success status
+          example: true
+        message:
+          type: string
+          description: Response message
+          example: "Account registered successfully"
+        accountId:
+          type: string
+          description: The created account ID
+          example: "acc_1234567890"
+        customerReference:
+          type: string
+          description: Customer reference
+          example: "cust_ref_123"
+        status:
+          type: string
+          description: Account status
+          example: "PENDING_VERIFICATION"
+      required:
+        - success
+        - message
+    CompanyDataResponse:
+      type: object
+      required:
+        - message
+        - success
+        - director
+      properties:
+        message:
+          type: string
+          description: Response message
+          example: "Company details retrieved successfully"
+        success:
+          type: boolean
+          description: Operation success status
+          example: true
+        data:
+          oneOf:
+            - $ref: '#/components/schemas/CompanyHouseData'
+            - type: 'null'
+          description: Company information from Companies House (null if not found)
+        director:
+          type: array
+          description: List of company directors/officers
+          items:
+            $ref: '#/components/schemas/CompanyHouseDirector'
+    CompanyHouseData:
+      type: object
+      properties:
+        company_number:
+          type: string
+          description: Company registration number
+          example: "09542738"
+        company_name:
+          type: string
+          description: Company name
+          example: "EXAMPLE COMPANY LIMITED"
+        company_status:
+          type: string
+          description: Current company status
+          example: "active"
+        company_status_detail:
+          type: string
+          description: Detailed company status
+        date_of_creation:
+          type: string
+          format: date
+          description: Date when company was incorporated
+          example: "2015-04-15"
+        type:
+          type: string
+          description: Company type
+          example: "ltd"
+        registered_office_address:
+          type: object
+          description: Company registered office address
+          properties:
+            address_line_1:
+              type: string
+              example: "123 Example Street"
+            address_line_2:
+              type: string
+              example: "Suite 456"
+            locality:
+              type: string
+              example: "London"
+            region:
+              type: string
+              example: "Greater London"
+            postal_code:
+              type: string
+              example: "SW1A 1AA"
+            country:
+              type: string
+              example: "England"
+        accounts:
+          type: object
+          description: Company accounts information
+          properties:
+            next_accounts:
+              type: object
+              properties:
+                due_on:
+                  type: string
+                  format: date
+                  example: "2025-04-30"
+                period_end_on:
+                  type: string
+                  format: date
+                  example: "2024-04-30"
+                period_start_on:
+                  type: string
+                  format: date
+                  example: "2023-05-01"
+            last_accounts:
+              type: object
+              properties:
+                made_up_to:
+                  type: string
+                  format: date
+                  example: "2023-04-30"
+                type:
+                  type: string
+                  example: "full"
+        sic_codes:
+          type: array
+          items:
+            type: string
+          description: Standard Industrial Classification codes
+          example: ["70229", "62020"]
+        has_been_liquidated:
+          type: boolean
+          description: Whether company has been liquidated
+          example: false
+        has_charges:
+          type: boolean
+          description: Whether company has charges
+          example: false
+        has_insolvency_history:
+          type: boolean
+          description: Whether company has insolvency history
+          example: false
+        description:
+          type: string
+          description: Company description
+          example: "PRIVATE LIMITED COMPANY"
+    CompanyHouseDirector:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Director full name
+          example: "SMITH, John"
+        officer_role:
+          type: string
+          description: Role within the company
+          example: "director"
+        appointed_on:
+          type: string
+          format: date
+          description: Date appointed as officer
+          example: "2015-04-15"
+        resigned_on:
+          type: string
+          format: date
+          description: Date resigned from position (if applicable)
+          example: "2020-12-31"
+        date_of_birth:
+          type: object
+          description: Date of birth information
+          properties:
+            month:
+              type: integer
+              example: 3
+            year:
+              type: integer
+              example: 1980
+        nationality:
+          type: string
+          description: Director nationality
+          example: "British"
+        country_of_residence:
+          type: string
+          description: Country of residence
+          example: "England"
+        occupation:
+          type: string
+          description: Director occupation
+          example: "Company Director"
